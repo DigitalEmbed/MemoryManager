@@ -44,7 +44,7 @@
 #define   DATABANK  1
 
 /*!
-  This variable indicates whether the database manager
+  This variable indicates whether the buffer manager
   has been initialized or not.
 */
 uint8_t ui8BufferManagerStatus = 0;
