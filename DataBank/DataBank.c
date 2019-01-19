@@ -34,6 +34,8 @@
 
 #include "DataBank.h"
 
+uint8_t ui8DataBankStatus = 0;
+
 /*!
   This vectors is the dataSpace of the Memory Pool.
   You can decrease the size of this vector to force
@@ -67,17 +69,20 @@ mpool_t mp64bitPool;
   \return Returns 0 if allocation is successful, 8 if deallocation of the mp8bitPool is unsuccessful, 16 if deallocation of the mp16bitPool is unsuccessful, 32 if deallocation of the mp32bitPool is unsuccessful or 64 if deallocation of the mp64bitPool is unsuccessful.
 */
 uint8_t ui8DataBankInit(){
-  if (ui8MPInit(&mp8bitPool, ui8Pool, bvAux8Pool, SIZE_MPOOL_8BIT, sizeof(uint8_t)) == MEMORYPOOL_INIT_ERROR){           /*!< If not possible memory pool allocation... */
-    return 8;                                                                                                                               /*!< You can treat the problem any way you want! */
-  }
-  if (ui8MPInit(&mp16bitPool, ui16Pool, bvAux16Pool, SIZE_MPOOL_16BIT, sizeof(uint16_t)) == MEMORYPOOL_INIT_ERROR){      /*!< If not possible memory pool allocation... */
-    return 16;                                                                                                                              /*!< You can treat the problem any way you want! */
-  }
-  if (ui8MPInit(&mp32bitPool, ui32Pool, bvAux32Pool, SIZE_MPOOL_32BIT, sizeof(uint32_t)) == MEMORYPOOL_INIT_ERROR){      /*!< If not possible memory pool allocation... */
-    return 32;                                                                                                                              /*!< You can treat the problem any way you want! */
-  }
-  if (ui8MPInit(&mp64bitPool, ui64Pool, bvAux64Pool, SIZE_MPOOL_64BIT, sizeof(uint64_t)) == MEMORYPOOL_INIT_ERROR){      /*!< If not possible memory pool allocation... */
-    return 64;                                                                                                                              /*!< You can treat the problem any way you want! */
+  if (ui8DataBankStatus != DATABANK_INITIALIZED){
+    if (ui8MPInit(&mp8bitPool, ui8Pool, bvAux8Pool, SIZE_MPOOL_8BIT, sizeof(uint8_t)) == MEMORYPOOL_INIT_ERROR){           /*!< If not possible memory pool allocation... */
+      return 8;                                                                                                                               /*!< You can treat the problem any way you want! */
+    }
+    if (ui8MPInit(&mp16bitPool, ui16Pool, bvAux16Pool, SIZE_MPOOL_16BIT, sizeof(uint16_t)) == MEMORYPOOL_INIT_ERROR){      /*!< If not possible memory pool allocation... */
+      return 16;                                                                                                                              /*!< You can treat the problem any way you want! */
+    }
+    if (ui8MPInit(&mp32bitPool, ui32Pool, bvAux32Pool, SIZE_MPOOL_32BIT, sizeof(uint32_t)) == MEMORYPOOL_INIT_ERROR){      /*!< If not possible memory pool allocation... */
+      return 32;                                                                                                                              /*!< You can treat the problem any way you want! */
+    }
+    if (ui8MPInit(&mp64bitPool, ui64Pool, bvAux64Pool, SIZE_MPOOL_64BIT, sizeof(uint64_t)) == MEMORYPOOL_INIT_ERROR){      /*!< If not possible memory pool allocation... */
+      return 64;                                                                                                                              /*!< You can treat the problem any way you want! */
+    }
+    ui8DataBankStatus = DATABANK_INITIALIZED;
   }
   return DATABANK_INITIALIZED;
 }
