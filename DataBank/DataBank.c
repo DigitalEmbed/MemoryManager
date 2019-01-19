@@ -33,7 +33,10 @@
 */
 
 #include "DataBank.h"
-
+/*!
+  This variable indicates whether the database manager 
+  has been initialized or not.
+*/
 uint8_t ui8DataBankStatus = 0;
 
 /*!
