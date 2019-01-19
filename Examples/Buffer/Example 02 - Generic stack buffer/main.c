@@ -63,7 +63,7 @@ int main(){
   /*!
     Initializing stack buffer manager...
   */
-  if (ui8InitBufferManager() != BUFFER_INITIALIZED){                                                                    /*!< If not possible stack buffer manager initialization... */
+  if (ui8BufferManagerInit() != BUFFER_INITIALIZED){                                                                    /*!< If not possible stack buffer manager initialization... */
     printf("ERROR: Stack buffer manager initialization error!");                                                        /*!< Print an error message and returns 2 for the operational system. */
     return 2;                                                                                                           /*!< You can treat the problem any way you want! */
   }
