@@ -60,11 +60,9 @@ Each processor sets a size for the pointers. In an Arduino UNO (ATMega328p), for
 
 As you can see, storing any data requires 11 bytes more than direct storage in memory: A char, for example, would consume 12 bytes of memory if allocated in a typed chained list and 1 byte if allocated statically or dynamically. One should then use this artifice with caution. See the examples before implementing them in your firmware. **The linked lists of this solution support storing non-primitive C types as long as the size of this type does not exceed 64-bits**.
 
-##### CircularBuffer
+##### Buffer
 
-A circular buffer manager was implemented in this library. Circular buffer is a buffer whose contents are written and read in a circular way, that is, the last buffer position is succeeded by the first buffer. Thus, a read algorithm that reads the last position of the buffer and needs to continue reading will return to the beginning of the buffer and proceed to read from there. The same goes for writing algorithms, and writing in a non-empty position causes loss of the original content.
-
-The operation of this buffer consists of the dynamic allocation of the memory pools, aiming at a greater simplification of the tool. The advantages of this endless vector in relation to the threaded list implementation of this set of libraries are:
+A buffer manager has been implemented in this library. With this manager, you can handle **stack** or **queue** type buffers. The operation of this buffer consists of the static or dynamic allocation of the memory pools, aiming at a greater simplification of the tool. The advantages of this endless vector in relation to the threaded list implementation of this set of libraries are:
 
 - Lower cost of memory;
 - Increased speed of access and data recording.
@@ -180,11 +178,9 @@ Cada processador define um tamanho para os ponteiros. Em um Arduino UNO (ATMega3
 
 Como pode-se notar, o armazenamento de qualquer dado requer 11 bytes a mais que o armazenamento direto na memória: Um char, por exemplo, consumiria 12 bytes de memória se alocado em uma lista encadeada tipada e 1 byte se alocado estaticamente ou dinamicamente. Deve-se então utilizar esse artifício com cautela. Consulte os exemplos antes de implementá-las em seu firmware. **As listas encadeadas desta solução suportam armazenamentos de tipos nao-primitivos do C desde que o tamanho deste tipo nao ultrapasse 64-bits**.
 
-##### CircularBuffer
+##### Buffer
 
-Foi implementado nessa biblioteca um gerenciador de buffer circular. Buffer circular é um buffer cujo conteúdo é escrito e lido de maneira circular, ou seja, a última posição do buffer é sucedida pela primeira. Assim, um algoritmo de leitura que leia a última posição do buffer e necessite continuar lendo irá retornar ao início do buffer e proceder a leitura a partir daí. O mesmo vale para algoritmos de escrita, sendo que a escrita numa posição não-vazia provoca a perda do conteúdo original.
-
-O funcionamento deste buffer consiste na alocação dinâmica dos memory pools, visando uma maior simplificação da ferramenta. As vantagens deste vetor sem fim em relação a implementação de lista encadeada desse conjunto de bibliotecas são:
+Um gerenciador de buffers foi implementado nesta biblioteca. Com esse gerenciador, você pode manipular buffers do tipo **pilha** ou **fila**. O funcionamento deste buffer consiste na alocação estatica ou dinâmica dos memory pools, visando uma maior simplificação da ferramenta. As vantagens deste vetor sem fim em relação a implementação de lista encadeada desse conjunto de bibliotecas são:
 
 - Menor custo de memória;
 - Maior velocidade de acesso e gravação dos dados.
