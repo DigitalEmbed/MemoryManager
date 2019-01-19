@@ -44,6 +44,12 @@
 #define   DATABANK  1
 
 /*!
+  This variable indicates whether the database manager
+  has been initialized or not.
+*/
+uint8_t ui8BufferManagerStatus = 0;
+
+/*!
   Statement of memory pools of buffers.
 */
 xCreatePool(mpBufferPool, buffer_t, NUMBER_OF_BUFFER);
@@ -53,7 +59,13 @@ xCreatePool(mpBufferPool, buffer_t, NUMBER_OF_BUFFER);
   Initialize the buffer manager.
 */
 uint8_t ui8BufferManagerInit(){
-  return ui8PoolInit(mpBufferPool);
+  if (ui8BufferManagerStatus != BUFFER_INITIALIZED){
+    ui8BufferManagerStatus = ui8PoolInit(mpBufferPool);
+    return ui8BufferManagerStatus;
+  }
+  else{
+    return BUFFER_INITIALIZED;
+  }
 }
 
 //! Buffer creator function
