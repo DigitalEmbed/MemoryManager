@@ -43,8 +43,8 @@
 */
 #define   SIZE_MPOOL_8BIT     100                                                                                                        /*!< 8-bits memory pool size. */
 #define   SIZE_MPOOL_16BIT    100                                                                                                        /*!< 16-bits memory pool size. */
-#define   SIZE_MPOOL_32BIT    100                                                                                                        /*!< 32-bits memory pool size. */
-#define   SIZE_MPOOL_64BIT    100                                                                                                        /*!< 64-bits memory pool size. */
+#define   SIZE_MPOOL_32BIT    20                                                                                                        /*!< 32-bits memory pool size. */
+#define   SIZE_MPOOL_64BIT    15                                                                                                        /*!< 64-bits memory pool size. */
 
 //! Allocation State macros.
 /*!
