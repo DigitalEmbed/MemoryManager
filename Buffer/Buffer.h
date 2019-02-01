@@ -41,19 +41,19 @@
 #include "../DataBank/DataBank.h"
 #include "../MemoryPool/MemoryPool.h"
 
-/*! Number of preallocation macro
-  This macro is basically the maximum memory size reserved for
-  dynamic allocations for circular buffers.
+//! Macro: Number of Preallocation
+/*!
+  This macro is basically the maximum memory size reserved for dynamic allocations for buffers.
 */
 #define   NUMBER_OF_BUFFER          10
 
-//! Pool Allocation status macros.
+//! Macro: Pool Allocation Status
 /*!
   This macros are for facilitate the use of this library.
 */
 #define   BUFFER_INITIALIZED        1
 
-//! Buffer type macros.
+//! Macro: Buffer Type
 /*!
   This macros are for facilitate the use of this library.
 */
@@ -64,7 +64,7 @@
 #define   QUEUE                     1
 #define   FIFO                      1
 
-//! Buffer structure
+//! Type Definition: Buffer Structure
 /*!
   Structure of circular buffer.
 */
@@ -87,5 +87,7 @@ void vPushBufferData(buffer_t* bpBuffer, void* vpData);                         
 void* vpPullBufferData(buffer_t* bpBuffer);                                                                                 /*!< Void pointer type function. */
 uint8_t ui8BufferManagerInit();                                                                                             /*!< 8-bits integer type. */
 uint8_t ui8GetAmountOfPendingData(buffer_t* bpBuffer);                                                                     	/*!< 8-bits integer type. */
+uint8_t ui8GetWritePosition(buffer_t* bpBuffer);                                                                            /*!< 8-bits integer type. */
+uint8_t ui8GetReadPosition(buffer_t* bpBuffer);                                                                             /*!< 8-bits integer type. */
 
 #endif

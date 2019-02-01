@@ -39,35 +39,55 @@
 #include <stdio.h>
 #include "../DataBank/DataBank.h"
 
-#define   NUMBER_OF_LISTS                 20
-#define   NUMBER_OF_TYPED_ELEMENT         60
-#define   NUMBER_OF_UNTYPED_ELEMENT       60
+//! Macros: List Configurations
+/*!
+  These macros are for the list manager's working settings.
+*/
+#ifndef NUMBER_OF_LISTS
+  #define   NUMBER_OF_LISTS               20
+#endif
 
+#ifndef NUMBER_OF_TYPED_ELEMENT
+  #define   NUMBER_OF_TYPED_ELEMENT       60
+#endif
+
+#ifndef NUMBER_OF_UNTYPED_ELEMENT
+  #define   NUMBER_OF_UNTYPED_ELEMENT     60
+#endif
+
+//! Macros: Types
+/*!
+  These macros leave the code more cleaner and understandable.
+*/
 #define   UNTYPED                         0
 #define   TYPED                           1
 #define   LIST                            2
 
-#define   DATA_NOT_ADDED                  0
-#define   DATA_ADDED                      1
-#define   DATA_NOT_REMOVED                0
-#define   DATA_REMOVED                    1
-#define   LIST_INIT_ERROR                 0
-#define   LIST_INIT_SUCESS                1
+//! Macros: Task Manager Status
+/*!
+  This macros leave the code more cleaner and understandable.
+*/
+#define   DATA_NOT_ADDED                  20
+#define   DATA_ADDED                      21
+#define   DATA_NOT_REMOVED                22
+#define   DATA_REMOVED                    23
+#define   LIST_INIT_ERROR                 24
+#define   LIST_INIT_SUCESS                25
 
-//! Linked list structure
+//! Structure: Linked List
 /*!
   Linked list structure.
 */
 struct list_t{
-  uint8_t ui8DataSize;                                                                                  /*!< 8-bits integer type. */
-  uint16_t ui16ListSize;                                                                                /*!< 16-bits integer type. */
-  struct uelem_t* uepStart;                                                                             /*!< uelem_t pointer type. */
-  struct telem_t* tepStart;                                                                             /*!< telem_t pointer type. */
+  uint8_t ui8DataSize;                    /*!< 8-bit integer type. */
+  uint16_t ui16ListSize;                  /*!< 16-bit integer type. */
+  struct uelem_t* uepStart;               /*!< uelem_t pointer type. */
+  struct telem_t* tepStart;               /*!< uelem_t pointer type. */
 };
 
-//! Type definition.
+//! Type Definition: list_t.
 /*!
-  This typedef is for facilitate the use of lList library.
+  This typedef is for facilitate the use of this library.
 */
 typedef struct list_t list_t;
 

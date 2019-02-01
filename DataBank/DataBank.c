@@ -33,66 +33,49 @@
 */
 
 #include "DataBank.h"
+
+//! "Static" Variable: Data Bank Control
 /*!
-  This variable indicates whether the data bank manager 
-  has been initialized or not.
+  This variable indicates whether the database manager has been initialized or not.
 */
 uint8_t ui8DataBankStatus = 0;
 
+//! Memory Pools: Data Bank Pools
 /*!
-  This vectors is the dataSpace of the Memory Pool.
-  You can decrease the size of this vector to force
-  a insufficient memory error.
+  Declaration of memory pools for data bank.
 */
-uint8_t ui8Pool[SIZE_MPOOL_8BIT];
-uint16_t ui16Pool[SIZE_MPOOL_16BIT];
-uint32_t ui32Pool[SIZE_MPOOL_32BIT];
-uint64_t ui64Pool[SIZE_MPOOL_64BIT];
-/*!
-  Declaration of a bitvector_t type vector. This is an
-  auxiliary vector that is responsible for managing the
-  use of spaces allocated in the memory pool.
-*/
-bitvector_t bvAux8Pool[uiAuxiliaryVectorSize(SIZE_MPOOL_8BIT)];
-bitvector_t bvAux16Pool[uiAuxiliaryVectorSize(SIZE_MPOOL_16BIT)];
-bitvector_t bvAux32Pool[uiAuxiliaryVectorSize(SIZE_MPOOL_32BIT)];
-bitvector_t bvAux64Pool[uiAuxiliaryVectorSize(SIZE_MPOOL_64BIT)];
+xCreatePool(mp8bitPool, uint8_t, SIZE_MPOOL_8BIT);
+xCreatePool(mp16bitPool, uint16_t, SIZE_MPOOL_16BIT);
+xCreatePool(mp32bitPool, uint32_t, SIZE_MPOOL_32BIT);
+xCreatePool(mp64bitPool, uint64_t, SIZE_MPOOL_64BIT);
 
+//! Function: Data Bank Initializer
 /*!
-  Declaration of the memory pool struct.
-*/
-mpool_t mp8bitPool;
-mpool_t mp16bitPool;
-mpool_t mp32bitPool;
-mpool_t mp64bitPool;
-
-//! Memory Pool initialization function
-/*!
-  Initialize the memory pools.
+  Initialize the data bank.
   \return Returns 0 if allocation is successful, 8 if deallocation of the mp8bitPool is unsuccessful, 16 if deallocation of the mp16bitPool is unsuccessful, 32 if deallocation of the mp32bitPool is unsuccessful or 64 if deallocation of the mp64bitPool is unsuccessful.
 */
 uint8_t ui8DataBankInit(){
   if (ui8DataBankStatus != DATABANK_INITIALIZED){
-    if (ui8MPInit(&mp8bitPool, ui8Pool, bvAux8Pool, SIZE_MPOOL_8BIT, sizeof(uint8_t)) == MEMORYPOOL_INIT_ERROR){           /*!< If not possible memory pool allocation... */
-      return 8;                                                                                                                               /*!< You can treat the problem any way you want! */
+    if (ui8PoolInit(mp8bitPool) == MEMORYPOOL_INIT_ERROR){
+      return 8;
     }
-    if (ui8MPInit(&mp16bitPool, ui16Pool, bvAux16Pool, SIZE_MPOOL_16BIT, sizeof(uint16_t)) == MEMORYPOOL_INIT_ERROR){      /*!< If not possible memory pool allocation... */
-      return 16;                                                                                                                              /*!< You can treat the problem any way you want! */
+    if (ui8PoolInit(mp16bitPool) == MEMORYPOOL_INIT_ERROR){
+      return 16;
     }
-    if (ui8MPInit(&mp32bitPool, ui32Pool, bvAux32Pool, SIZE_MPOOL_32BIT, sizeof(uint32_t)) == MEMORYPOOL_INIT_ERROR){      /*!< If not possible memory pool allocation... */
-      return 32;                                                                                                                              /*!< You can treat the problem any way you want! */
+    if (ui8PoolInit(mp32bitPool) == MEMORYPOOL_INIT_ERROR){
+      return 32;
     }
-    if (ui8MPInit(&mp64bitPool, ui64Pool, bvAux64Pool, SIZE_MPOOL_64BIT, sizeof(uint64_t)) == MEMORYPOOL_INIT_ERROR){      /*!< If not possible memory pool allocation... */
-      return 64;                                                                                                                              /*!< You can treat the problem any way you want! */
+    if (ui8PoolInit(mp64bitPool) == MEMORYPOOL_INIT_ERROR){
+      return 64;
     }
     ui8DataBankStatus = DATABANK_INITIALIZED;
   }
   return DATABANK_INITIALIZED;
 }
 
-//! Memory Pool allocation function
+//! Function: Data Bank Allocation
 /*!
-  Allocate memory space in Memory Pools.
+  Allocate memory space in Data Bank.
   \param ui8ElementSize is a unsigned 8-bit integer. This is the size of the elements.
   \param ui16AllocationSize is a unsigned 16-bit integer. This is the size of space allocation.
   \return Returns the memory allocation address or NULL if the allocation is unsuccessful.
@@ -115,9 +98,9 @@ void* vpDBAlloc(uint8_t ui8ElementSize, uint16_t ui16AllocationSize){
   }
 }
 
-//! Memory Pool deallocation function
+//! Function: Data Bank Deallocation
 /*!
-  Deallocate memory space in Memory Pool.
+  Deallocate memory space in Data Bank.
   \param pvAllocatedPointer is a void pointer parameter. It's the address of the allocation. On case deallocation successfully, this function going to set this pointer to NULL
   \param ui8ElementSize is a unsigned 8-bit integer. This is the size of the elements.
   \param ui16AllocationSize is a unsigned 16-bit integer. This is the size of space allocation.
@@ -137,9 +120,9 @@ void vDBFree(void* pvAllocatedPointer, uint8_t ui8ElementSize, uint16_t ui16Allo
   }
 }
 
-//! Memory Pool fragmentation checker
+//! Function: Data Bank Fragmentation Checker
 /*!
-  Check that the memory pool is fragmented.
+  Check if data bank is fragmented.
   \param ui8ElementSize is a unsigned 8-bit integer. This is the size of the elements.
   \return Return FRAGMENTED_MEMORY, UNFRAGMENTED_MEMORY or SIZE_UNRECOGNIZED.
 */
@@ -161,9 +144,9 @@ uint16_t ui16CheckFragmentation(uint8_t ui8ElementSize){
   }
 }
 
-//! Memory Pool fragmented free space checker
+//! Function: Data Bank Fragmented Free Space Checker
 /*!
-  Check the maximum memory pool allocation.
+  Check the maximum data bank allocation.
   \param ui8ElementSize is a unsigned 8-bit integer. This is the size of the elements.
   \return Return the maximum memory pool allocation or SIZE_UNRECOGNIZED.
 */
@@ -185,9 +168,9 @@ uint16_t ui16GetFragmentedFreeSpace(uint8_t ui8ElementSize){
   }
 }
 
-//! Memory Pool reallocation function
+//! Function: Data Bank Reallocation
 /*!
-  Reallocate memory space in Memory Pool.
+  Reallocate memory space in data bank.
   \param ui8ElementSize is a unsigned 8-bit integer. This is the size of the elements.
   \param pvAllocatedPointer is a void pointer to pointer parameter. It's the address of the pointer of the allocation. On case deallocation successfully, this function going to set this pointer to NULL.
   \param ui16OldAllocationSize is a unsigned 16-bit integer. This is the old size of space allocation.
@@ -212,9 +195,9 @@ void* vpDBRealloc(uint8_t ui8ElementSize, void* pvAllocatedPointer, uint16_t ui1
   }
 }
 
-//! Memory Pool fragmented free space checker
+//! Function: Data Bank Free Space Checker
 /*!
-  Check the memory pool free space.
+  Check data bank free space.
   \param ui8ElementSize is a unsigned 8-bit integer. This is the size of the elements.
   \return Return the memory pool free space or SIZE_UNRECOGNIZED.
 */

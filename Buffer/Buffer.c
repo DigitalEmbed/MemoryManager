@@ -36,25 +36,26 @@
 #include "Queue/Queue.h"
 #include "Stack/Stack.h"
 
-//! Type of buffer data macros
+//! Macro: Type of Buffer Data
 /*!
   This macro are for internal use and exists only to separate the buffers dynamically allocated in the Data Bank from the rest.
 */
 #define   GENERIC   0
 #define   DATABANK  1
 
+//! "Static" Variable: Data Bank Control
 /*!
-  This variable indicates whether the buffer manager
-  has been initialized or not.
+  This variable indicates whether the database manager has been initialized or not.
 */
 uint8_t ui8BufferManagerStatus = 0;
 
+//! Memory Pool: Buffer Pool
 /*!
-  Statement of memory pools of buffers.
+  Memory pool creation for buffer manager.
 */
 xCreatePool(mpBufferPool, buffer_t, NUMBER_OF_BUFFER);
 
-//! Buffer manager initializer function
+//! Function: Buffer Manager Initializer
 /*!
   Initialize the buffer manager.
 */
@@ -68,7 +69,7 @@ uint8_t ui8BufferManagerInit(){
   }
 }
 
-//! Buffer creator function
+//! Function: Buffer Creator
 /*!
   Create a dynamic buffer.
   \param ui8ElementSize is a 8-Bit integer. That's the size of type of vpVector.
@@ -76,7 +77,7 @@ uint8_t ui8BufferManagerInit(){
   \return Returns the adress of allocation of the buffer.
 */
 buffer_t* bpCreateBuffer(uint8_t ui8BufferType, uint8_t ui8ElementSize, uint8_t ui8BufferSize){
-  if(ui8BufferSize > 1 && ui8ElementSize > 0 && ui8BufferType < 2){
+  if(ui8BufferSize > 0 && ui8ElementSize > 0 && ui8BufferType < 2){
     buffer_t *bpBuffer = (buffer_t*) vpMPAlloc(&mpBufferPool, 1);
     bpBuffer->vpVector = (buffer_t*) vpDBAlloc(ui8ElementSize, ui8BufferSize);
     if (bpBuffer->vpVector != NULL){
@@ -98,10 +99,10 @@ buffer_t* bpCreateBuffer(uint8_t ui8BufferType, uint8_t ui8ElementSize, uint8_t 
   }
 }
 
-//! Buffer creator function
+//! Function: Generic Buffer Creator
 /*!
   Create a dynamic buffer.
-  \param vpVector is a void pointer type. It's the vector that will be "converted" into circular vector.
+  \param vpVector is a void pointer type. It's the vector that will be "converted" into buffer.
   \param ui8ElementSize is a 8-Bit integer. That's the size of type of vpVector.
   \param ui8BufferSize is a 8-Bit integer. This parameter refers to the size of vpVector.
   \return Returns the adress of allocation of the buffer.
@@ -124,7 +125,7 @@ buffer_t* bpCreateGenericBuffer(void* vpVector, uint8_t ui8BufferType, uint8_t u
   }
 }
 
-//! Buffer writer function
+//! Function: Buffer Writer
 /*!
   Write a data on a buffer.
   \param bpBuffer is a buffer_t pointer. This parameter is the address of buffer.
@@ -144,7 +145,7 @@ void vPushBufferData(buffer_t* bpBuffer, void* vpData){
   }
 }
 
-//! Buffer reader function
+//! Function: Buffer Reader
 /*!
   Pull data on a buffer.
   \param bpBuffer is a buffer_t pointer. This parameter is the address of buffer.
@@ -165,7 +166,7 @@ void* vpPullBufferData(buffer_t* bpBuffer){
   }
 }
 
-//! Buffer deleter function
+//! Function: Buffer Deleter
 /*!
   Delete a buffer.
   \param bpBuffer is a buffer_t pointer. This parameter is the address of buffer.
@@ -183,9 +184,9 @@ void vDeleteBuffer(buffer_t** bpBuffer){
   }
 }
 
-//! Amount of pending data function getter for buffer.
+//! Function: Amount of Pending Data Getter
 /*!
-  Get the amount of pending data on a circular buffer. This function is incompatible with circular buffer types.
+  Get the amount of pending data on a circular buffer.
   \param bpBuffer is a buffer_t pointer. This parameter is the address of buffer.
   \return Returns the amount of pending data.
 */
@@ -193,13 +194,33 @@ uint8_t ui8GetAmountOfPendingData(buffer_t* bpBuffer){
   return bpBuffer->ui8AmountOfData;
 }
 
-//! Buffer cleaner function
+//! Function: Buffer Cleaner
 /*!
-  Clean a buffer. This function is incompatible with circular buffer types.
+  Clean a buffer.
   \param bpBuffer is a buffer_t pointer. This parameter is the address of buffer.
 */
 void vCleanBuffer(buffer_t* bpBuffer){
   bpBuffer->ui8ReadPosition = 0;
   bpBuffer->ui8WritePosition = 0;
   bpBuffer->ui8AmountOfData = 0;
+}
+
+//! Function: Write Position Getter
+/*!
+  Get the write position of buffer.
+  \param bpBuffer is a buffer_t pointer. This parameter is the address of buffer.
+  \return Returns write position.
+*/
+uint8_t ui8GetWritePosition(buffer_t* bpBuffer){
+  return bpBuffer->ui8WritePosition;
+}
+
+//! Function: Read Position Getter
+/*!
+  Get the read position of buffer.
+  \param bpBuffer is a buffer_t pointer. This parameter is the address of buffer.
+  \return Returns read position.
+*/
+uint8_t ui8GetReadPosition(buffer_t* bpBuffer){
+  return bpBuffer->ui8ReadPosition;
 }

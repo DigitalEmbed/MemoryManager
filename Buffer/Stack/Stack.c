@@ -34,9 +34,9 @@
 
 #include "Stack.h"
 
-//! Circular buffer writer function
+//! Function: Stack Buffer Writer
 /*!
-  Write a data on a circular buffer.
+  Write a data on a stack buffer.
   \param bpBuffer is a buffer_t pointer. This parameter is the address of circular buffer.
   \param vpData is a void pointer. This parameter is the data to be inserted on the buffer.
 */
@@ -55,7 +55,7 @@ void vPushStackBuffer(buffer_t* bpBuffer, void* vpData){
   }
 }
 
-//! Circular buffer reader function
+//! Function: Circular Buffer Reader
 /*!
   Read data on a circular buffer.
   \param bpBuffer is a buffer_t pointer. This parameter is the address of circular buffer.

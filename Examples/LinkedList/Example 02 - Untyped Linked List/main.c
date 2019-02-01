@@ -8,8 +8,8 @@
   that, in a list, you can not store different types of data that have the same size 
   (Example: uint8_t, bool and char).
 
-  Put the "MemoryPool", "DataBank" and "LinkedList" library folder in the same 
-  location as this file.
+  Put the "Bits", "MemoryPool", "DataBank" and "LinkedList" library folder in 
+  the same location as this file.
 
   This code file was written by Jorge Henrique Moreira Santana and is under 
   the GNU GPLv3 license. All legal rights are reserved.

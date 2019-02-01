@@ -3,8 +3,8 @@
   This simply example demonstrates the use of generic stack buffer. A generic
   buffer is a buffer that is not of a primitive type of C.
 
-  Put the "MemoryPool", "DataBank" and "Buffer" library folder in the same
-  location as this file.
+  Put the "Bits", "MemoryPool", "DataBank" and "Buffer" library folder in the 
+  same location as this file.
 
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.

@@ -35,7 +35,7 @@
 #include "LinkedList.h"
 #include "../MemoryPool/MemoryPool.h"
 
-//! Non-typed linked list element
+//! Type Definition: Untyped Linked List Element Structure
 /*!
   Typed element struct for non-typed linked lists.
 */
@@ -45,7 +45,7 @@ struct telem_t{
   uint8_t ui8Size;                                                                                    /*!< 8-bits integer type. */
 };
 
-//! Typed linked list element
+//! Type Definition: Typed Linked List Element Structure
 /*!
   Non-typed element struct for typed linked lists.
 */
@@ -54,29 +54,32 @@ struct uelem_t{
   struct uelem_t* uepNext;                                                                            /*!< Pointer uelem_t type. */
 };
 
-//! Type definition.
+//! Type Definition: uelem_t and telem_t
 /*!
   This typedef is for facilitate the use of lList library.
 */
 typedef struct uelem_t uelem_t;
 typedef struct telem_t telem_t;
 
+//! Memory Pool: Untyped Elements
 /*!
-  Statement of memory pools of untyped elements.
+  Memory pool creation of untyped elements.
 */
 xCreatePool(mpUntypedElement, uelem_t, NUMBER_OF_UNTYPED_ELEMENT);
 
+//! Memory Pool: Typed Elements
 /*!
-  Statement of memory pools of typed elements.
+  Memory pool creation of typed elements.
 */
 xCreatePool(mpTypedElement, telem_t, NUMBER_OF_TYPED_ELEMENT);
 
+//! Memory Pool: List
 /*!
-  Statement of memory pools of linked lists.
+  Memory pool creation of linked lists.
 */
 xCreatePool(mpList, list_t, NUMBER_OF_LISTS);
 
-//! List initializer function
+//! Function: List Initializer
 /*!
   Initialize linked list memory pools.
   \return Returns LIST_INIT_SUCESS or LIST_INIT_ERROR.
@@ -94,7 +97,7 @@ uint8_t ui8InitList(){
   return LIST_INIT_SUCESS;
 }
 
-//! Typed list creator function
+//! Function: Typed List Creator
 /*!
   Create a untyped list.
   \param ui8DataSize is a 8-Bit integer. This parameter is the size of the list data.
@@ -110,7 +113,7 @@ list_t* lpCreateTypedList(uint8_t ui8DataSize){
   return lBuffer;
 }
 
-//! Untyped list creator function
+//! Function: Untyped List Creator
 /*!
   Create a untyped list.
 */
@@ -125,7 +128,7 @@ list_t* lpCreateUntypedList(){
   return lBuffer;
 }
 
-//! List deleter function
+//! Function: List Deleter
 /*!
   Delete a list.
   \param lpList is a pointer to list_t pointer. This parameter is the address of pointer of list.
@@ -138,7 +141,7 @@ void vDeleteList(list_t** lpList){
   vMPFree(&mpList, (void**) lpList, 1);
 }
 
-//! Typed list inserter function
+//! Function: Typed List Data Inserter
 /*!
   Insert a data on a typed list.
   \param lpList is a list_t pointer. This parameter is the address of list.
@@ -179,7 +182,7 @@ uint8_t ui8AddOnTypedList(list_t* lpList, void* vpData, uint16_t ui16Position){
   }
 }
 
-//! Untyped List inserter function
+//! Function: Untyped List Data Inserter
 /*!
   Insert a data on a untyped list.
   \param lpList is a list_t pointer. This parameter is the address of list.
@@ -222,7 +225,7 @@ uint8_t ui8AddOnUntypedList(list_t* lpList, void* vpData, uint8_t ui8DataSize, u
   }
 }
 
-//! List remover function
+//! Function: List Data Remover
 /*!
   Remove a data from list.
   \param lpList is a list_t pointer. This parameter is the address of list.
@@ -302,7 +305,7 @@ uint8_t ui8RemoveFromList(list_t* lpList, uint16_t ui16Position){
   }
 }
 
-//! List data getter function
+//! Function: List Data Getter
 /*!
   Get data of list.
   \param lpList is a 8-Bit integer. This parameter indicates the type of query you want to know. Use the TYPED, UNTYPED, or LIST macros..
@@ -333,7 +336,7 @@ void* vpGetElement(list_t* lpList, uint16_t ui16Position){
   }
 }
 
-//! List data size getter function
+//! Function: List Data Size
 /*!
   Get data size of one element of list.
   \param lpList is a list_t pointer. This parameter is the address of list.
@@ -357,7 +360,7 @@ uint8_t ui8GetListDataSize(list_t *lpList, uint16_t ui16Position){
   }
 }
 
-//! List size getter function
+//! Function: List Size
 /*!
   Get list size.
   \param lpList is a list_t pointer. This parameter is the address of list.
@@ -367,7 +370,7 @@ uint16_t ui16GetListSize(list_t *lpList){
   return lpList->ui16ListSize;
 }
 
-//! List free space getter function
+//! Function: List Free Space
 /*!
   Get then free space of list memory pools.
   \param lpList is a 8-Bit integer. This parameter indicates the type of query you want to know. Use the TYPED, UNTYPED, or LIST macros..

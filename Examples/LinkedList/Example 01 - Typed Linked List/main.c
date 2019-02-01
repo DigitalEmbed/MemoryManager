@@ -27,8 +27,8 @@
   direct storage on ATMega328p. We would have, for example, a char occupying 
   11 bytes of its RAM. Use with caution...
 
-  Put the "MemoryPool", "DataBank" and "LinkedList" library folder in the same 
-  location as this file.
+  Put the "Bits", "MemoryPool", "DataBank" and "LinkedList" library folder in 
+  the same location as this file.
 
   This code file was written by Jorge Henrique Moreira Santana and is under 
   the GNU GPLv3 license. All legal rights are reserved.

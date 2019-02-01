@@ -38,36 +38,32 @@
 #include <inttypes.h>
 #include "../MemoryPool/MemoryPool.h"
 
+//! Macros: Data Bank Configurations
 /*!
   These defines are basically the maximum memory size reserved for dynamic allocations. You can change them! On default, the reserved memory size is 720 bytes.
 */
-#define   SIZE_MPOOL_8BIT     100                                                                                                        /*!< 8-bits memory pool size. */
-#define   SIZE_MPOOL_16BIT    100                                                                                                        /*!< 16-bits memory pool size. */
-#define   SIZE_MPOOL_32BIT    20                                                                                                        /*!< 32-bits memory pool size. */
-#define   SIZE_MPOOL_64BIT    15                                                                                                        /*!< 64-bits memory pool size. */
+#ifndef SIZE_MPOOL_8BIT
+  #define   SIZE_MPOOL_8BIT       100                                                                                                         /*!< 8-bits memory pool size. */
+#endif
 
-//! Allocation State macros.
+#ifndef SIZE_MPOOL_16BIT
+  #define   SIZE_MPOOL_16BIT      100                                                                                                         /*!< 16-bits memory pool size. */
+#endif
+
+#ifndef SIZE_MPOOL_32BIT
+  #define   SIZE_MPOOL_32BIT      100                                                                                                         /*!< 32-bits memory pool size. */
+#endif
+
+#ifndef SIZE_MPOOL_64BIT
+  #define   SIZE_MPOOL_64BIT      100                                                                                                         /*!< 64-bits memory pool size. */
+#endif
+
+//! Macros: Data Bank State
 /*!
   This macros are for facilitate the use of this library.
 */
-#define   DATABANK_INITIALIZED    0
+#define   DATABANK_INITIALIZED    1
 #define   SIZE_UNRECOGNIZED       65535
-
-//! Linked List element structure.
-/*!
-  This is an example of how to insert structures in the memory pool (which will be reused in the linked list library)
-*/
-struct elem_t{
-  void* vpData;
-  struct elem_t* eNext;
-  uint8_t ui8Size;
-};
-
-//! Type definition of elem_t.
-/*!
-  This typedef is for facilitate the use of this library.
-*/
-typedef struct elem_t elem_t;
 
 uint8_t ui8DataBankInit();																		                                                                                /*!< 8-bits integer type function. */
 uint16_t ui16CheckFragmentation(uint8_t ui8ElementSize);                                                                                      /*!< 8-bits integer type function. */

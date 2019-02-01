@@ -34,9 +34,9 @@
 
 #include "Queue.h"
 
-//! Circular buffer writer function
+//! Function: Queue Buffer Writer
 /*!
-  Write a data on a circular buffer.
+  Write a data on a queue buffer.
   \param bpBuffer is a buffer_t pointer. This parameter is the address of circular buffer.
   \param vpData is a void pointer. This parameter is the data to be inserted on the buffer.
 */
@@ -51,7 +51,8 @@ void vPushQueueBuffer(buffer_t* bpBuffer, void* vpData){
     bpBuffer->ui8AmountOfData++;
   }
   void* vpAdressBuffer = (char*) bpBuffer->vpVector + bpBuffer->ui8WritePosition * bpBuffer->ui8ElementSize;
-  memcpy(vpAdressBuffer, vpData, bpBuffer->ui8ElementSize);
+  //ERRO = VETOR NULO
+  memcpy(vpAdressBuffer, vpData, bpBuffer->ui8ElementSize); //ERRO
   if (bpBuffer->ui8WritePosition == bpBuffer->ui8BufferSize - 1){
     bpBuffer->ui8WritePosition = 0;
   }
@@ -60,9 +61,9 @@ void vPushQueueBuffer(buffer_t* bpBuffer, void* vpData){
   }
 }
 
-//! Circular buffer reader function
+//! Function: Queue Buffer Reader
 /*!
-  Read data on a circular buffer.
+  Read data on a queue buffer.
   \param bpBuffer is a buffer_t pointer. This parameter is the address of circular buffer.
   \return Returns the adress of data on the buffer.
 */

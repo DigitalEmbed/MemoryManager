@@ -2,7 +2,8 @@
 /*!
   This simply example demonstrates the use of reallocation function.
 
-  Put the "MemoryPool" library folder in the same location as this file.
+  Put the "Bits" and "MemoryPool" library folder in the same location as 
+  this file.
 
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.

@@ -8,6 +8,10 @@ In more modern programming languages (Java, for example) there are several mecha
 
 The set of libraries was made in C in order to reach the majority of embedded programmers. The advantage of using the C library is the speed of execution and memory economy, since classes generate a lot of memory garbage.
 
+##### Bits
+
+With this library it is possible from the manipulation of bits in a variable to the creation of bit vectors. They are ideal for programs that have many binary variables because they have a large memory economy, and are handled faster by the processor/microcontroller.
+
 ##### MemoryPool
 
 Memory Pools are fixed-size blocks of allocation. This library manages these memory blocks, allowing dynamic allocation and deallocation of memory comparable to C malloc or C++ new operator. This concept was widely used in older video games because of its speed of execution. JAVA also uses this concept for its allocations.
@@ -126,6 +130,10 @@ Podem ocorrer vários problemas, como acidentes de alocação, fragmentação de
 Em linguagens de programação mais modernas (Java, por exemplo) existem diversos mecanismos que permitem que a alocação de memória seja simples e segura.
 
 O conjunto de bibliotecas foi feito em C visando atingir a maior parte de programadores embarcados. A vantagem de se utilizar a biblioteca em C é a velocidade de execução e a economia de memória , já que classes geram muito lixo de memória.
+
+##### Bits
+
+Com essa biblioteca é possível desde a manipulação de bits em uma variável até a criação de vetores de bits. São ideais em programas que possuam muitas variáveis binárias por ter uma grande economia de memória, além de ser manipulada mais rapidamente pelo processador/microcontrolador.
 
 ##### MemoryPool
 
