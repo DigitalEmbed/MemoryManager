@@ -42,6 +42,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
+#include "Bits/Bits.h"
 #include "MemoryPool/MemoryPool.h"
 
 /*!
@@ -59,7 +60,7 @@ char cCharPool[128];
   auxiliary vector that is responsible for managing the
   use of spaces allocated in the memory pool.
 */
-bitvector_t bvAuxCharPool[uiAuxiliaryVectorSize(sizeof(cCharPool))];
+bitvector_t bvAuxCharPool[uiBitVectorSize(sizeof(cCharPool))];
 
 /*!
   Declaration of the memory pool struct.
