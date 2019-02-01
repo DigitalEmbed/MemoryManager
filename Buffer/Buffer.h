@@ -45,7 +45,9 @@
 /*!
   This macro is basically the maximum memory size reserved for dynamic allocations for buffers.
 */
-#define   NUMBER_OF_BUFFER          10
+#ifndef NUMBER_OF_BUFFER
+  #define   NUMBER_OF_BUFFER        10
+#endif
 
 //! Macro: Pool Allocation Status
 /*!
