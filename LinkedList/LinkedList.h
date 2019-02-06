@@ -94,7 +94,7 @@ typedef struct list_t list_t;
 list_t* lpCreateUntypedList();                                                                          /*!< list_t pointer type function. */
 list_t* lpCreateTypedList(uint8_t ui8DataSize);                                                         /*!< list_t pointer type function. */
 void vDeleteList(list_t** lpList);                                                                      /*!< Void type function. */
-uint8_t ui8InitList();                                                                                  /*!< 8-bits integer type function. */
+uint8_t ui8ListManagerInit();                                                                           /*!< 8-bits integer type function. */
 uint8_t ui8AddOnUntypedList(list_t* lpList, void* vpData, uint8_t ui8DataSize, uint16_t ui16Position);  /*!< 8-bits integer type function. */
 uint8_t ui8AddOnTypedList(list_t* lpList, void* vpData, uint16_t ui16Position);                         /*!< 8-bits integer type function. */
 uint8_t ui8RemoveFromList(list_t* lpList, uint16_t ui16Position);                                       /*!< 8-bits integer type function. */

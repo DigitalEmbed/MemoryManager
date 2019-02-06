@@ -84,7 +84,7 @@ xCreatePool(mpList, list_t, NUMBER_OF_LISTS);
   Initialize linked list memory pools.
   \return Returns LIST_INIT_SUCESS or LIST_INIT_ERROR.
 */
-uint8_t ui8InitList(){
+uint8_t ui8ListManagerInit(){
   if (ui8PoolInit(mpUntypedElement) == MEMORYPOOL_INIT_ERROR){
     return LIST_INIT_ERROR;
   }

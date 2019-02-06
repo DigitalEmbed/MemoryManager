@@ -66,7 +66,7 @@ As you can see, storing any data requires 11 bytes more than direct storage in m
 
 ##### Buffer
 
-A buffer manager has been implemented in this library. With this manager, you can handle **stack** or **queue** type buffers. The operation of this buffer consists of the static or dynamic allocation of the memory pools, aiming at a greater simplification of the tool. The advantages of this endless vector in relation to the threaded list implementation of this set of libraries are:
+A buffer manager has been implemented in this library. With this manager, you can handle **circular**, **stack** or **queue** type buffers. The operation of this buffer consists of the static or dynamic allocation of the memory pools, aiming at a greater simplification of the tool. The advantages of this endless vector in relation to the threaded list implementation of this set of libraries are:
 
 - Lower cost of memory;
 - Increased speed of access and data recording.
@@ -188,7 +188,7 @@ Como pode-se notar, o armazenamento de qualquer dado requer 11 bytes a mais que 
 
 ##### Buffer
 
-Um gerenciador de buffers foi implementado nesta biblioteca. Com esse gerenciador, você pode manipular buffers do tipo **pilha** ou **fila**. O funcionamento deste buffer consiste na alocação estatica ou dinâmica dos memory pools, visando uma maior simplificação da ferramenta. As vantagens deste vetor sem fim em relação a implementação de lista encadeada desse conjunto de bibliotecas são:
+Um gerenciador de buffers foi implementado nesta biblioteca. Com esse gerenciador, você pode manipular buffers do tipo **circular**, **pilha** ou **fila**. O funcionamento deste buffer consiste na alocação estatica ou dinâmica dos memory pools, visando uma maior simplificação da ferramenta. As vantagens deste vetor sem fim em relação a implementação de lista encadeada desse conjunto de bibliotecas são:
 
 - Menor custo de memória;
 - Maior velocidade de acesso e gravação dos dados.

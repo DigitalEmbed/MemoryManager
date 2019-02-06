@@ -35,6 +35,7 @@
 #include "Buffer.h"
 #include "Queue/Queue.h"
 #include "Stack/Stack.h"
+#include "Circular/Circular.h"
 
 //! Macro: Type of Buffer Data
 /*!
@@ -77,7 +78,7 @@ uint8_t ui8BufferManagerInit(){
   \return Returns the adress of allocation of the buffer.
 */
 buffer_t* bpCreateBuffer(uint8_t ui8BufferType, uint8_t ui8ElementSize, uint8_t ui8BufferSize){
-  if(ui8BufferSize > 0 && ui8ElementSize > 0 && ui8BufferType < 2){
+  if(ui8BufferSize > 0 && ui8ElementSize > 0 && ui8BufferType < 3){
     buffer_t *bpBuffer = (buffer_t*) vpMPAlloc(&mpBufferPool, 1);
     bpBuffer->vpVector = (buffer_t*) vpDBAlloc(ui8ElementSize, ui8BufferSize);
     if (bpBuffer->vpVector != NULL){
@@ -108,7 +109,7 @@ buffer_t* bpCreateBuffer(uint8_t ui8BufferType, uint8_t ui8ElementSize, uint8_t 
   \return Returns the adress of allocation of the buffer.
 */
 buffer_t* bpCreateGenericBuffer(void* vpVector, uint8_t ui8BufferType, uint8_t ui8ElementSize, uint8_t ui8BufferSize){
-  if(ui8BufferSize > 1 && ui8ElementSize > 0 && ui8BufferType < 2){
+  if(ui8BufferSize > 1 && ui8ElementSize > 0 && ui8BufferType < 3){
     buffer_t *bpBuffer = (buffer_t*) vpMPAlloc(&mpBufferPool, 1);
     bpBuffer->vpVector = vpVector;
     bpBuffer->ui8ReadPosition = 0;
@@ -142,6 +143,10 @@ void vPushBufferData(buffer_t* bpBuffer, void* vpData){
       vPushStackBuffer(bpBuffer, vpData);
       break;
 
+    case CIRCULAR:
+      vPushCircularBuffer(bpBuffer, vpData);
+      break;
+
   }
 }
 
@@ -159,6 +164,9 @@ void* vpPullBufferData(buffer_t* bpBuffer){
 
     case STACK:
       return vpPullStackBuffer(bpBuffer);
+
+    case CIRCULAR:
+      return vpPullCircularBuffer(bpBuffer);
 
     default:
       return NULL;

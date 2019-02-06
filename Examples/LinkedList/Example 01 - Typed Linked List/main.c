@@ -89,7 +89,7 @@ int main(){
   /*!
     Initializing circular buffer manager...
   */
-  if (ui8InitList() != LIST_INIT_SUCESS){                                                           /*!< If not possible circular buffer manager initialization... */
+  if (ui8ListManagerInit() != LIST_INIT_SUCESS){                                                    /*!< If not possible circular buffer manager initialization... */
     printf("ERROR: Circular buffer manager initialization error!");                                 /*!< Print an error message and returns 2 for the operational system. */
     return 2;                                                                                       /*!< You can treat the problem any way you want! */
   }

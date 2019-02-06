@@ -66,6 +66,8 @@
 #define   QUEUE                     1
 #define   FIFO                      1
 
+#define   CIRCULAR                  2
+
 //! Type Definition: Buffer Structure
 /*!
   Structure of circular buffer.
