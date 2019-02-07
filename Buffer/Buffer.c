@@ -44,12 +44,6 @@
 #define   GENERIC   0
 #define   DATABANK  1
 
-//! "Static" Variable: Data Bank Control
-/*!
-  This variable indicates whether the database manager has been initialized or not.
-*/
-uint8_t ui8BufferManagerStatus = 0;
-
 //! Memory Pool: Buffer Pool
 /*!
   Memory pool creation for buffer manager.
@@ -61,6 +55,7 @@ xCreatePool(mpBufferPool, buffer_t, NUMBER_OF_BUFFER);
   Initialize the buffer manager.
 */
 uint8_t ui8BufferManagerInit(){
+	static uint8_t ui8BufferManagerStatus = 0;
   if (ui8BufferManagerStatus != BUFFER_INITIALIZED){
     ui8BufferManagerStatus = ui8PoolInit(mpBufferPool);
     return ui8BufferManagerStatus;

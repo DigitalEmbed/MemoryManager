@@ -85,14 +85,18 @@ xCreatePool(mpList, list_t, NUMBER_OF_LISTS);
   \return Returns LIST_INIT_SUCESS or LIST_INIT_ERROR.
 */
 uint8_t ui8ListManagerInit(){
-  if (ui8PoolInit(mpUntypedElement) == MEMORYPOOL_INIT_ERROR){
+  static uint8_t ui8LinkedListStatus = 0;
+  if (ui8LinkedListStatus == 0){
+    if (ui8PoolInit(mpUntypedElement) == MEMORYPOOL_INIT_ERROR){
     return LIST_INIT_ERROR;
-  }
-  if (ui8PoolInit(mpTypedElement) == MEMORYPOOL_INIT_ERROR){
-    return LIST_INIT_ERROR;
-  }
-  if (ui8PoolInit(mpList) == MEMORYPOOL_INIT_ERROR){
-    return LIST_INIT_ERROR;
+    }
+    if (ui8PoolInit(mpTypedElement) == MEMORYPOOL_INIT_ERROR){
+      return LIST_INIT_ERROR;
+    }
+    if (ui8PoolInit(mpList) == MEMORYPOOL_INIT_ERROR){
+      return LIST_INIT_ERROR;
+    }
+    ui8LinkedListStatus = LIST_INIT_SUCESS;
   }
   return LIST_INIT_SUCESS;
 }

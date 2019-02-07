@@ -34,12 +34,6 @@
 
 #include "DataBank.h"
 
-//! "Static" Variable: Data Bank Control
-/*!
-  This variable indicates whether the database manager has been initialized or not.
-*/
-uint8_t ui8DataBankStatus = 0;
-
 //! Memory Pools: Data Bank Pools
 /*!
   Declaration of memory pools for data bank.
@@ -55,6 +49,7 @@ xCreatePool(mp64bitPool, uint64_t, SIZE_MPOOL_64BIT);
   \return Returns 0 if allocation is successful, 8 if deallocation of the mp8bitPool is unsuccessful, 16 if deallocation of the mp16bitPool is unsuccessful, 32 if deallocation of the mp32bitPool is unsuccessful or 64 if deallocation of the mp64bitPool is unsuccessful.
 */
 uint8_t ui8DataBankInit(){
+  static uint8_t ui8DataBankStatus = 0;
   if (ui8DataBankStatus != DATABANK_INITIALIZED){
     if (ui8PoolInit(mp8bitPool) == MEMORYPOOL_INIT_ERROR){
       return 8;
