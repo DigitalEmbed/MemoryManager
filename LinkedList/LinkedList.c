@@ -88,7 +88,7 @@ uint8_t ui8ListManagerInit(){
   static uint8_t ui8LinkedListStatus = 0;
   if (ui8LinkedListStatus == 0){
     if (ui8PoolInit(mpUntypedElement) == MEMORYPOOL_INIT_ERROR){
-    return LIST_INIT_ERROR;
+      return LIST_INIT_ERROR;
     }
     if (ui8PoolInit(mpTypedElement) == MEMORYPOOL_INIT_ERROR){
       return LIST_INIT_ERROR;
