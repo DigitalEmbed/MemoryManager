@@ -123,9 +123,10 @@ The exception is the use of dynamic memory allocation, but only in the latter ca
 
 ### Author
 
-This system was developed by ** orge Henrique Moreira Santana**:
-   - Electronic Technician by SENAI
-   - Electrical Engineer with emphasis in Automation and Control by the Federal University of Uberlândia
+This system was developed by **Jorge Henrique Moreira Santana**:
+	- Brazilian;
+	- Electronic Technician by SENAI;
+ 	- Electrical Engineer with emphasis in Automation and Control by the Federal University of Uberlândia;
 
 ## Português
 
@@ -250,5 +251,6 @@ Você pode contribuir para este projeto de várias maneiras:
 ### Autor
 
 Este sistema foi desenvolvido por **Jorge Henrique Moreira Santana**:
-  - Técnico em Eletrônica pelo SENAI
-  - Engenheiro Eletricista com ênfase em Automação e Controle pela Universidade Federal de Uberlândia
+	- Brasileiro;
+  - Técnico em Eletrônica pelo SENAI;
+  - Engenheiro Eletricista com ênfase em Automação e Controle pela Universidade Federal de Uberlândia;
