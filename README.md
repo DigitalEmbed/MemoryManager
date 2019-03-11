@@ -75,10 +75,6 @@ A buffer manager has been implemented in this library. With this manager, you ca
 
 A major disadvantage is overwriting data if the buffer reaches its limiting amount of data.
 
-### How to use this library in C ++?
-
-To use it in C ++ written code, simply change the file extensions of that library from .c to .cpp.
-
 ### License
 
 #### GNU Lesser General Public License v3.0
@@ -203,10 +199,6 @@ Um gerenciador de buffers foi implementado nesta biblioteca. Com esse gerenciado
 - Maior velocidade de acesso e gravação dos dados.
 
 Uma grande desvantagem é a sobrescrição de dados caso o buffer atinja sua quantidade limite de dados.
-
-### Como utilizar essa bilbioteca em C++?
-
-Para usá-la em códigos escritos em C++, basta mudar as extensões dos arquivos dessa biblioteca de .c para .cpp.
 
 ### Licença
 
