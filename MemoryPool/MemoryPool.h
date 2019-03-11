@@ -35,6 +35,10 @@
 #ifndef MemoryPool_H
 #define MemoryPool_H
 
+#ifdef __cplusplus
+  extern "C" {
+#endif
+
 #include <inttypes.h>
 #include <string.h>
 #include "../Bits/Bits.h"
@@ -99,5 +103,9 @@ uint16_t ui16MPGetDataSize(mpool_t *mpMemoryPool);                              
 void* vpMPAlloc(mpool_t *mpMemoryPool, uint16_t ui16AllocationSize);                                                                          /*!< Void type pointer function. */
 void* vpMPRealloc(mpool_t *mpMemoryPool, void** vpAllocatedPointer, uint16_t ui16OldAllocationSize, uint16_t ui16NewAllocationSize);          /*!< Void type pointer function. */
 void vMPFree(mpool_t *mpMemoryPool, void** vpAllocatedPointer, uint16_t ui16AllocationSize);                                                  /*!< Void type function. */
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif

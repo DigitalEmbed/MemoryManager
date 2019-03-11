@@ -32,12 +32,20 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef QUEUE_H
-#define QUEUE_H
+#ifndef Queue_H
+#define Queue_H
+
+#ifdef __cplusplus
+  extern "C" {
+#endif
 
 #include "../Buffer.h"
 
 void vPushQueueBuffer(buffer_t* bpBuffer, void* vpData);                                                /*!< Void type function. */
 void* vpPullQueueBuffer(buffer_t* bpBuffer);                                                            /*!< Void pointer type function. */
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif

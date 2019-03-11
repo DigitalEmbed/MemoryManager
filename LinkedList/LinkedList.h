@@ -35,6 +35,10 @@
 #ifndef LinkedList_H
 #define LinkedList_H
 
+#ifdef __cplusplus
+  extern "C" {
+#endif
+
 #include <inttypes.h>
 #include <stdio.h>
 #include "../DataBank/DataBank.h"
@@ -102,5 +106,9 @@ uint8_t ui8GetListDataSize(list_t* lpList, uint16_t ui16Position);              
 uint16_t ui16GetListSize(list_t* lpList);                                                               /*!< 16-bits integer type function. */
 uint16_t ui16GetListFreeSpace(uint8_t ui8ListType);                                                     /*!< 16-bits integer type function. */
 void* vpGetElement(list_t* lpList, uint16_t ui16Position);                                              /*!< Void type pointer function. */
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif

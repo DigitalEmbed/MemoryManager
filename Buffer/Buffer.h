@@ -35,6 +35,10 @@
 #ifndef Buffer_H
 #define Buffer_H
 
+#ifdef __cplusplus
+  extern "C" {
+#endif
+
 #include <stdio.h>
 #include <string.h>
 #include <inttypes.h>
@@ -93,5 +97,9 @@ uint8_t ui8BufferManagerInit();                                                 
 uint8_t ui8GetAmountOfPendingData(buffer_t* bpBuffer);                                                                     	/*!< 8-bits integer type. */
 uint8_t ui8GetWritePosition(buffer_t* bpBuffer);                                                                            /*!< 8-bits integer type. */
 uint8_t ui8GetReadPosition(buffer_t* bpBuffer);                                                                             /*!< 8-bits integer type. */
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif

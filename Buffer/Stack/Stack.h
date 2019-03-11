@@ -32,12 +32,20 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef STACK_H
-#define STACK_H
+#ifndef Stack_H
+#define Stack_H
+
+#ifdef __cplusplus
+  extern "C" {
+#endif
 
 #include "../Buffer.h"
 
 void vPushStackBuffer(buffer_t* bpBuffer, void* vpData);                                                /*!< Void type function. */
 void* vpPullStackBuffer(buffer_t* bpBuffer);                                                            /*!< Void pointer type function. */
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif

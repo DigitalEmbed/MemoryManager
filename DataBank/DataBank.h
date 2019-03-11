@@ -35,6 +35,10 @@
 #ifndef DataBank_H
 #define DataBank_H
 
+#ifdef __cplusplus
+  extern "C" {
+#endif
+
 #include <inttypes.h>
 #include "../MemoryPool/MemoryPool.h"
 
@@ -72,5 +76,9 @@ uint16_t ui16GetFreeSpace(uint8_t ui8ElementSize);                              
 void* vpDBAlloc(uint8_t ui8ElementSize, uint16_t ui16AllocationSize);							                                                            /*!< Void pointer type function. */
 void* vpDBRealloc(uint8_t ui8ElementSize, void* pvAllocatedPointer, uint16_t ui16OldAllocationSize, uint16_t ui16NewAllocationSize);          /*!< Void pointer type function. */
 void vDBFree(void* pvAllocatedPointer, uint8_t ui8ElementSize, uint16_t ui16AllocationSize);                                                  /*!< Void type function. */
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif

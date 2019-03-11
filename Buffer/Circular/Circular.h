@@ -32,12 +32,20 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef CIRCULAR_H
-#define CIRCULAR_H
+#ifndef Circular_H
+#define Circular_H
+
+#ifdef __cplusplus
+  extern "C" {
+#endif
 
 #include "../Buffer.h"
 
 void vPushCircularBuffer(buffer_t* bpBuffer, void* vpData);                                                /*!< Void type function. */
 void* vpPullCircularBuffer(buffer_t* bpBuffer);                                                            /*!< Void pointer type function. */
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif
