@@ -43,6 +43,10 @@
 #include <string.h>
 #include "../Bits/Bits.h"
 
+#ifdef jOS_CRTOS
+  #include "../../jOS.h"
+#endif
+
 //! Macro: Creating a Pool
 /*!
   This macro leave the code cleaner when creating pools. This macro can be instantiated outside of a function: this will make the pool be global.

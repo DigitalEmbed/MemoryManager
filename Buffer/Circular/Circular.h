@@ -41,6 +41,10 @@
 
 #include "../Buffer.h"
 
+#ifdef jOS_CRTOS
+  #include "../../../jOS.h"
+#endif
+
 void vPushCircularBuffer(buffer_t* bpBuffer, void* vpData);                                                /*!< Void type function. */
 void* vpPullCircularBuffer(buffer_t* bpBuffer);                                                            /*!< Void pointer type function. */
 

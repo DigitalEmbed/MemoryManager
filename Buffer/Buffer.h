@@ -49,8 +49,14 @@
 /*!
   This macro is basically the maximum memory size reserved for dynamic allocations for buffers.
 */
-#ifndef NUMBER_OF_BUFFER
-  #define   NUMBER_OF_BUFFER        10
+#ifndef jOS_CRTOS
+
+  #ifndef NUMBER_OF_BUFFER
+    #define   NUMBER_OF_BUFFER        10
+  #endif
+
+#else
+  #include "../../jOS.h"
 #endif
 
 //! Macro: Pool Allocation Status

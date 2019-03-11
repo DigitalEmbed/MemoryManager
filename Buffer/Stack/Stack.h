@@ -41,6 +41,10 @@
 
 #include "../Buffer.h"
 
+#ifdef jOS_CRTOS
+  #include "../../../jOS.h"
+#endif
+
 void vPushStackBuffer(buffer_t* bpBuffer, void* vpData);                                                /*!< Void type function. */
 void* vpPullStackBuffer(buffer_t* bpBuffer);                                                            /*!< Void pointer type function. */
 
