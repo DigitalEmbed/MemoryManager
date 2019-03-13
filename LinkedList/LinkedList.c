@@ -88,6 +88,7 @@ xCreatePool(mpList, list_t, NUMBER_OF_LISTS);
 uint8_t ui8ListManagerInit(){
   static uint8_t ui8LinkedListStatus = 0;
   if (ui8LinkedListStatus == 0){
+    ui8LinkedListStatus = LIST_INIT_SUCESS;
     if (ui8PoolInit(mpUntypedElement) == MEMORYPOOL_INIT_ERROR){
       ui8LinkedListStatus = LIST_INIT_ERROR;
     }
@@ -100,7 +101,6 @@ uint8_t ui8ListManagerInit(){
     if (ui8DataBankInit() != DATABANK_INITIALIZED){
       ui8LinkedListStatus = LIST_INIT_ERROR;
     }
-    ui8LinkedListStatus = LIST_INIT_SUCESS;
   }
   return ui8LinkedListStatus;
 }
