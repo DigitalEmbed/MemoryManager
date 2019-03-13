@@ -3,9 +3,6 @@
   This simply example demonstrates the use of DataBank lib. On this software,
   different types of data are allocated in memory pools.
 
-  Put the  "Bits", "MemoryPool" and "DataBank" library folder in the same 
-  location as this file.
-
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
 
@@ -41,7 +38,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include "DataBank/DataBank.h"
+#include <DataBank.h>
 
 /*!
   A sample structure. The size of this type is 64 bits.
