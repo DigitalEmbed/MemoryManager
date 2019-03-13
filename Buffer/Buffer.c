@@ -36,6 +36,8 @@
 #include "Queue/Queue.h"
 #include "Stack/Stack.h"
 #include "Circular/Circular.h"
+#include <DataBank.h>
+#include <MemoryPool.h>
 
 //! Macro: Type of Buffer Data
 /*!
