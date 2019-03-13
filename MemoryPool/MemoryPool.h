@@ -41,11 +41,7 @@
 
 #include <inttypes.h>
 #include <string.h>
-#include "../Bits/Bits.h"
-
-#ifdef jOS_CRTOS
-  #include "../../jOS.h"
-#endif
+#include <Bits.h>
 
 //! Macro: Creating a Pool
 /*!
