@@ -42,22 +42,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <inttypes.h>
-#include "../DataBank/DataBank.h"
-#include "../MemoryPool/MemoryPool.h"
 
 //! Macro: Number of Preallocation
 /*!
   This macro is basically the maximum memory size reserved for dynamic allocations for buffers.
 */
-#ifndef jOS_CRTOS
-
-  #ifndef NUMBER_OF_BUFFER
-    #define   NUMBER_OF_BUFFER        10
-  #endif
-
-#else
-  #include "../../jOS.h"
+#ifndef NUMBER_OF_BUFFER
+  #define   NUMBER_OF_BUFFER        10
 #endif
+
 
 //! Macro: Pool Allocation Status
 /*!
