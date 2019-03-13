@@ -2,8 +2,6 @@
 /*!
   This simply example demonstrates the use of bit manipulation.
 
-  Put the "Bits" library folder in the same location as this file.
-
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
 
@@ -38,7 +36,7 @@
 */
 
 #include <stdio.h>
-#include "Bits/Bits.h"
+#include <Bits.h>
 
 /*!
   Declaration of the character that will count the order of the processes...
