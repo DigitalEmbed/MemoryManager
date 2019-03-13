@@ -41,28 +41,21 @@
 
 #include <inttypes.h>
 #include <stdio.h>
-#include "../DataBank/DataBank.h"
 
 //! Macros: List Configurations
 /*!
   These macros are for the list manager's working settings.
 */
-#ifndef jOS_CRTOS
+#ifndef NUMBER_OF_LISTS
+  #define   NUMBER_OF_LISTS               20
+#endif
 
-  #ifndef NUMBER_OF_LISTS
-    #define   NUMBER_OF_LISTS               20
-  #endif
+#ifndef NUMBER_OF_TYPED_ELEMENT
+  #define   NUMBER_OF_TYPED_ELEMENT       60
+#endif
 
-  #ifndef NUMBER_OF_TYPED_ELEMENT
-    #define   NUMBER_OF_TYPED_ELEMENT       60
-  #endif
-
-  #ifndef NUMBER_OF_UNTYPED_ELEMENT
-    #define   NUMBER_OF_UNTYPED_ELEMENT     60
-  #endif
-
-#else
-  #include "../../jOS.h"
+#ifndef NUMBER_OF_UNTYPED_ELEMENT
+  #define   NUMBER_OF_UNTYPED_ELEMENT     60
 #endif
 
 //! Macros: Types
