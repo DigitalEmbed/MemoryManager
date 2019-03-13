@@ -1,5 +1,3 @@
-# Data Structures
-
 ## English
 
 ### Preface
