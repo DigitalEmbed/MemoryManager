@@ -97,9 +97,12 @@ uint8_t ui8ListManagerInit(){
     if (ui8PoolInit(mpList) == MEMORYPOOL_INIT_ERROR){
       return LIST_INIT_ERROR;
     }
+    if (ui8DataBankInit() != DATABANK_INITIALIZED){
+      return LIST_INIT_ERROR;
+    }
     ui8LinkedListStatus = LIST_INIT_SUCESS;
   }
-  return LIST_INIT_SUCESS;
+  return ui8LinkedListStatus;
 }
 
 //! Function: Typed List Creator
