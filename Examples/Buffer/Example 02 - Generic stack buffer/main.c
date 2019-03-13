@@ -50,14 +50,6 @@ typedef struct{
 
 int main(){
   /*!
-    Initializing DataBank manager...
-  */
-  if (ui8DataBankInit() != DATABANK_INITIALIZED){                                                                       /*!< If not possible data bank initialization... */
-    printf("ERROR: Data Bank initialization error!");                                                                   /*!< Print an error message and returns 1 for the operational system. */
-    return 1;                                                                                                           /*!< You can treat the problem any way you want! */
-  }
-
-  /*!
     Initializing stack buffer manager...
   */
   if (ui8BufferManagerInit() != BUFFER_INITIALIZED){                                                                    /*!< If not possible stack buffer manager initialization... */
