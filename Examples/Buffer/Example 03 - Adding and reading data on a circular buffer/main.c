@@ -40,7 +40,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include "Buffer/Buffer.h"
+#include <Buffer.h>
 
 int main(){
   /*!
