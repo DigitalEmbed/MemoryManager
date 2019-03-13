@@ -38,7 +38,7 @@
 */
 
 #include <stdio.h>
-#include "Bits/Bits.h"
+#include <Bits.h>
 
 /*!
   Creating the bit vector. Use as multiple sizes of 8 for less memory waste.
