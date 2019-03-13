@@ -102,7 +102,7 @@ buffer_t* bpCreateBuffer(uint8_t ui8BufferType, uint8_t ui8ElementSize, uint8_t 
 
 //! Function: Generic Buffer Creator
 /*!
-  Create a dynamic buffer.
+  Create a generic dynamic buffer.
   \param vpVector is a void pointer type. It's the vector that will be "converted" into buffer.
   \param ui8ElementSize is a 8-Bit integer. That's the size of type of vpVector.
   \param ui8BufferSize is a 8-Bit integer. This parameter refers to the size of vpVector.
