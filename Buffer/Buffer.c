@@ -57,16 +57,16 @@ xCreatePool(mpBufferPool, buffer_t, NUMBER_OF_BUFFER);
   Initialize the buffer manager.
 */
 uint8_t ui8BufferManagerInit(){
-	static uint8_t ui8BufferManagerStatus = 0;
-	if (ui8BufferManagerStatus == 0){
-		ui8BufferManagerStatus = BUFFER_INITIALIZED;
-	  if (ui8PoolInit(mpBufferPool) != MEMORYPOOL_INIT_SUCESS){
-	    ui8BufferManagerStatus = BUFFER_NOT_INITIALIZED;
-	  }
-		if (ui8DataBankInit() != DATABANK_INITIALIZED){
-			ui8BufferManagerStatus = BUFFER_NOT_INITIALIZED;
-		}
-	}
+  static uint8_t ui8BufferManagerStatus = 0;
+  if (ui8BufferManagerStatus == 0){
+    ui8BufferManagerStatus = BUFFER_INITIALIZED;
+    if (ui8PoolInit(mpBufferPool) != MEMORYPOOL_INIT_SUCESS){
+      ui8BufferManagerStatus = BUFFER_NOT_INITIALIZED;
+    }
+    if (ui8DataBankInit() != DATABANK_INITIALIZED){
+      ui8BufferManagerStatus = BUFFER_NOT_INITIALIZED;
+    }
+  }
   return ui8BufferManagerStatus;
 }
 
