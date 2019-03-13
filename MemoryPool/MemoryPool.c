@@ -33,6 +33,7 @@
 */
 
 #include "MemoryPool.h"
+#include <Bits.h>
 
 //! Macro: Address Calculation
 /*!
