@@ -41,7 +41,6 @@
 
 #include <inttypes.h>
 #include <string.h>
-#include <Bits.h>
 
 //! Macro: Creating a Pool
 /*!
