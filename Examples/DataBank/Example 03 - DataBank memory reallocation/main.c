@@ -4,9 +4,6 @@
   reallocating, you need at least the sum of the old allocation size with
   the new size of non-fragmented free space in your memory pool. 
 
-  Put the "Bits", "MemoryPool", "DataBank" and "Buffer" library folder in the 
-  same location as this file.
-
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
 
@@ -42,7 +39,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include "DataBank/DataBank.h"
+#include <DataBank.h>
 
 /*!
   Main function.
