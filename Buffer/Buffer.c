@@ -58,13 +58,16 @@ xCreatePool(mpBufferPool, buffer_t, NUMBER_OF_BUFFER);
 */
 uint8_t ui8BufferManagerInit(){
 	static uint8_t ui8BufferManagerStatus = 0;
-  if (ui8BufferManagerStatus != BUFFER_INITIALIZED){
-    ui8BufferManagerStatus = ui8PoolInit(mpBufferPool);
-    return ui8BufferManagerStatus;
-  }
-  else{
-    return BUFFER_INITIALIZED;
-  }
+	if (ui8BufferManagerStatus == 0){
+		ui8BufferManagerStatus = BUFFER_INITIALIZED;
+	  if (ui8PoolInit(mpBufferPool) == MEMORYPOOL_INIT_ERROR){
+	    ui8BufferManagerStatus = BUFFER_NOT_INITIALIZED;
+	  }
+		if (ui8DataBankInit() != DATABANK_INITIALIZED){
+			ui8BufferManagerStatus = BUFFER_NOT_INITIALIZED;
+		}
+	}
+  return ui8BufferManagerStatus;
 }
 
 //! Function: Buffer Creator
