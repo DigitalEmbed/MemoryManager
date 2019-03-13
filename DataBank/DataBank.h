@@ -40,34 +40,27 @@
 #endif
 
 #include <inttypes.h>
-#include "../MemoryPool/MemoryPool.h"
 
 //! Macros: Data Bank Configurations
 /*!
   These defines are basically the maximum memory size reserved for dynamic allocations. You can change them! On default, the reserved memory size is 720 bytes.
 */
-#ifndef jOS_CRTOS
-
-  #ifndef SIZE_MPOOL_8BIT
-    #define   SIZE_MPOOL_8BIT       100                                                                                                         /*!< 8-bits memory pool size. */
-  #endif
-
-  #ifndef SIZE_MPOOL_16BIT
-    #define   SIZE_MPOOL_16BIT      100                                                                                                         /*!< 16-bits memory pool size. */
-  #endif
-
-  #ifndef SIZE_MPOOL_32BIT
-    #define   SIZE_MPOOL_32BIT      100                                                                                                         /*!< 32-bits memory pool size. */
-  #endif
-
-  #ifndef SIZE_MPOOL_64BIT
-    #define   SIZE_MPOOL_64BIT      100                                                                                                         /*!< 64-bits memory pool size. */
-  #endif
-
-#else
-  #include "../../jOS.h"
+#ifndef SIZE_MPOOL_8BIT
+  #define   SIZE_MPOOL_8BIT       100                                                                                                         /*!< 8-bits memory pool size. */
 #endif
 
+#ifndef SIZE_MPOOL_16BIT
+  #define   SIZE_MPOOL_16BIT      100                                                                                                         /*!< 16-bits memory pool size. */
+#endif
+
+#ifndef SIZE_MPOOL_32BIT
+  #define   SIZE_MPOOL_32BIT      100                                                                                                         /*!< 32-bits memory pool size. */
+#endif
+
+#ifndef SIZE_MPOOL_64BIT
+  #define   SIZE_MPOOL_64BIT      100                                                                                                         /*!< 64-bits memory pool size. */
+#endif
+    
 //! Macros: Data Bank State
 /*!
   This macros are for facilitate the use of this library.
