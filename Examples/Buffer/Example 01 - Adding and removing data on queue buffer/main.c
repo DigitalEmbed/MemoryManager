@@ -2,9 +2,6 @@
 /*!
   This simply example demonstrates the use of queue buffer.
 
-  Put the "Bits", "MemoryPool", "DataBank" and "Buffer" library folder in the 
-  same location as this file.
-
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
 
@@ -40,7 +37,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include "Buffer/Buffer.h"
+#include <Buffer.h>
 
 int main(){
   /*!
