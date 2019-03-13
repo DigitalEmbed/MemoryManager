@@ -8,9 +8,6 @@
   that, in a list, you can not store different types of data that have the same size 
   (Example: uint8_t, bool and char).
 
-  Put the "Bits", "MemoryPool", "DataBank" and "LinkedList" library folder in 
-  the same location as this file.
-
   This code file was written by Jorge Henrique Moreira Santana and is under 
   the GNU GPLv3 license. All legal rights are reserved.
 
@@ -46,8 +43,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include "LinkedList/LinkedList.h"
-#include "DataBank/DataBank.h"
+#include <LinkedList.h>
 
 /*!
   Declaration of a list_t type list.
@@ -67,14 +63,6 @@ void vPrintMemoryStatus();                                                      
   Main function.
 */
 int main(){
-  /*!
-    Initializing DataBank manager...
-  */
-  if (ui8DataBankInit() != DATABANK_INITIALIZED){                                                 /*!< If not possible data bank initialization... */
-    printf("ERROR: Data Bank initialization error!");                                             /*!< Print an error message and returns 1 for the operational system. */
-    return 1;                                                                                     /*!< You can treat the problem any way you want! */
-  }
-  
   /*!
     Initializing circular buffer manager...
   */
