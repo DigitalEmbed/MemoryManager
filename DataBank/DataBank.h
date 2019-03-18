@@ -65,8 +65,9 @@
 /*!
   This macros are for facilitate the use of this library.
 */
-#define   DATABANK_INITIALIZED    1
-#define   SIZE_UNRECOGNIZED       65535
+#define   DATABANK_INITIALIZED      1
+#define   DATABANK_NOT_INITIALIZED  7
+#define   SIZE_UNRECOGNIZED         65535
 
 uint8_t ui8DataBankInit();																		                                                                                /*!< 8-bits integer type function. */
 uint16_t ui16CheckFragmentation(uint8_t ui8ElementSize);                                                                                      /*!< 8-bits integer type function. */
