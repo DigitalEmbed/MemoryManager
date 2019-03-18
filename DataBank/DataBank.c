@@ -51,22 +51,22 @@ xCreatePool(mp64bitPool, uint64_t, SIZE_MPOOL_64BIT);
 */
 uint8_t ui8DataBankInit(){
   static uint8_t ui8DataBankStatus = 0;
-  if (ui8DataBankStatus != DATABANK_INITIALIZED){
+  if (ui8DataBankStatus == 0){
+    ui8DataBankStatus = DATABANK_INITIALIZED;
     if (ui8PoolInit(mp8bitPool) == MEMORYPOOL_INIT_ERROR){
-      return 8;
+      ui8DataBankStatus = 8;
     }
     if (ui8PoolInit(mp16bitPool) == MEMORYPOOL_INIT_ERROR){
-      return 16;
+      ui8DataBankStatus = 16;
     }
     if (ui8PoolInit(mp32bitPool) == MEMORYPOOL_INIT_ERROR){
-      return 32;
+      ui8DataBankStatus = 32;
     }
     if (ui8PoolInit(mp64bitPool) == MEMORYPOOL_INIT_ERROR){
-      return 64;
+      ui8DataBankStatus = 64;
     }
-    ui8DataBankStatus = DATABANK_INITIALIZED;
   }
-  return DATABANK_INITIALIZED;
+  return ui8DataBankStatus;
 }
 
 //! Function: Data Bank Allocation
