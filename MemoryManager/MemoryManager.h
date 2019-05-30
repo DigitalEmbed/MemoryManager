@@ -45,6 +45,7 @@
 /*!
   MemoryManager system libraries.
 */
+#include "BitVector.h"
 #include "MemoryPool.h"
 #include "DataBank.h"
 #include "Buffer.h"
