@@ -73,6 +73,12 @@ A buffer manager has been implemented in this library. With this manager, you ca
 
 A major disadvantage is overwriting data if the buffer reaches its limiting amount of data.
 
+### Prerequisites
+
+This library uses other libraries in your implementation, which must be installed in your IDE if you want to use these files in your code. These libraries are:
+
+- [EmbeddedTools](https://github.com/DigitalEmbed/EmbeddedTools)
+
 ### License
 
 #### GNU Lesser General Public License v3.0
@@ -197,6 +203,12 @@ Um gerenciador de buffers foi implementado nesta biblioteca. Com esse gerenciado
 - Maior velocidade de acesso e gravação dos dados.
 
 Uma grande desvantagem é a sobrescrição de dados caso o buffer atinja sua quantidade limite de dados.
+
+### Pré-Requisitos
+
+Esta biblioteca utiliza outras bibliotecas em sua implementação, que devem estarem instaladas na sua IDE caso queira utilizar estes arquivos em seus códigos. Estas bilbiotecas são:
+
+- [EmbeddedTools](https://github.com/DigitalEmbed/EmbeddedTools)
 
 ### Licença
 
