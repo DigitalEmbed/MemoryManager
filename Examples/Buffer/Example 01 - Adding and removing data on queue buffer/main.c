@@ -37,7 +37,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include <Buffer.h>
+#include <MemoryManager.h>
 
 int main(){
   /*!
