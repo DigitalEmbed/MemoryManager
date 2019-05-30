@@ -84,7 +84,7 @@ xCreatePool(mpList, list_t, NUMBER_OF_LISTS);
   Initialize linked list memory pools.
   \return Returns LIST_INIT_SUCESS or LIST_INIT_ERROR.
 */
-uint8_t ui8ListManagerInit(){
+uint8_t ui8ListManagerInit(void){
   static uint8_t ui8LinkedListStatus = 0;
   if (ui8LinkedListStatus == 0){
     ui8LinkedListStatus = LIST_INIT_SUCESS;
@@ -124,7 +124,7 @@ list_t* lpCreateTypedList(uint8_t ui8DataSize){
 /*!
   Create a untyped list.
 */
-list_t* lpCreateUntypedList(){
+list_t* lpCreateUntypedList(void){
   list_t* lBuffer = (list_t*) vpMPAlloc(&mpList, 1);
   if (lBuffer != NULL){
     lBuffer->ui8DataSize = 0;
@@ -169,7 +169,12 @@ uint8_t ui8AddOnTypedList(list_t* lpList, void* vpData, uint16_t ui16Position){
     if (uepNewElement->vpData == NULL){
       return DATA_NOT_ADDED;
     }
-    memcpy(uepNewElement->vpData, vpData, lpList->ui8DataSize);
+    if (vpData != NULL){
+      memcpy(uepNewElement->vpData, vpData, lpList->ui8DataSize);
+    }
+    else{
+      memset(uepNewElement->vpData, 0, lpList->ui8DataSize);
+    }
     uelem_t* uepBuffer = lpList->uepStart;
     if (ui16Position == 0){
       uepNewElement->uepNext = lpList->uepStart;
@@ -212,7 +217,12 @@ uint8_t ui8AddOnUntypedList(list_t* lpList, void* vpData, uint8_t ui8DataSize, u
       return DATA_NOT_ADDED;
     }
     tepNewElement->ui8Size = ui8DataSize; //NESSA LINHA DA PAU
-    memcpy(tepNewElement->vpData, vpData, ui8DataSize); //NESSA LINHA DA PAU
+    if (vpData != NULL){
+      memcpy(tepNewElement->vpData, vpData, ui8DataSize); //NESSA LINHA DA PAU
+    }
+    else{
+      memset(tepNewElement->vpData, 0, lpList->ui8DataSize);
+    }
     telem_t* tepBuffer = lpList->tepStart;
     if (ui16Position == 0){
       tepNewElement->tepNext = lpList->tepStart;

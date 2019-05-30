@@ -50,7 +50,7 @@ xCreatePool(mp64bitPool, uint64_t, SIZE_MPOOL_64BIT);
   Initialize the data bank.
   \return Returns 0 if allocation is successful, 8 if deallocation of the mp8bitPool is unsuccessful, 16 if deallocation of the mp16bitPool is unsuccessful, 32 if deallocation of the mp32bitPool is unsuccessful or 64 if deallocation of the mp64bitPool is unsuccessful.
 */
-uint8_t ui8DataBankInit(){
+uint8_t ui8DataBankInit(void){
   static uint8_t ui8DataBankStatus = 0;
   if (ui8DataBankStatus == 0){
     ui8DataBankStatus = DATABANK_INITIALIZED;

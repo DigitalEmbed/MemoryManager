@@ -52,8 +52,12 @@ void vPushQueueBuffer(buffer_t* bpBuffer, void* vpData){
     bpBuffer->ui8AmountOfData++;
   }
   void* vpAdressBuffer = (char*) bpBuffer->vpVector + bpBuffer->ui8WritePosition * bpBuffer->ui8ElementSize;
-  //ERRO = VETOR NULO
-  memcpy(vpAdressBuffer, vpData, bpBuffer->ui8ElementSize); //ERRO
+  if (vpData != NULL){
+    memcpy(vpAdressBuffer, vpData, bpBuffer->ui8ElementSize);
+  }
+  else{
+    memset(vpAdressBuffer, 0, bpBuffer->ui8ElementSize);
+  }
   if (bpBuffer->ui8WritePosition == bpBuffer->ui8BufferSize - 1){
     bpBuffer->ui8WritePosition = 0;
   }

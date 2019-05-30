@@ -44,7 +44,12 @@
 void vPushStackBuffer(buffer_t* bpBuffer, void* vpData){
   bpBuffer->ui8ReadPosition = bpBuffer->ui8WritePosition;
   void* vpAdressBuffer = (char*) bpBuffer->vpVector + bpBuffer->ui8WritePosition * bpBuffer->ui8ElementSize;
-  memcpy(vpAdressBuffer, vpData, bpBuffer->ui8ElementSize);
+  if (vpData != NULL){
+    memcpy(vpAdressBuffer, vpData, bpBuffer->ui8ElementSize);
+  }
+  else{
+    memset(vpAdressBuffer, 0, bpBuffer->ui8ElementSize);
+  }
   if (bpBuffer->ui8WritePosition == bpBuffer->ui8BufferSize - 1){
     bpBuffer->ui8WritePosition = 0;
   }

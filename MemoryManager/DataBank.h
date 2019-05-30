@@ -49,7 +49,7 @@
 #define   DATABANK_NOT_INITIALIZED  7
 #define   SIZE_UNRECOGNIZED         65535
 
-uint8_t ui8DataBankInit();																		                                                                                /*!< 8-bits integer type function. */
+uint8_t ui8DataBankInit(void);																		                                                                            /*!< 8-bits integer type function. */
 uint16_t ui16CheckFragmentation(uint8_t ui8ElementSize);                                                                                      /*!< 8-bits integer type function. */
 uint16_t ui16GetFragmentedFreeSpace(uint8_t ui8ElementSize);                                                                                  /*!< 16-bits integer type function. */
 uint16_t ui16GetFreeSpace(uint8_t ui8ElementSize);                                                                                            /*!< 16-bits integer type function. */
