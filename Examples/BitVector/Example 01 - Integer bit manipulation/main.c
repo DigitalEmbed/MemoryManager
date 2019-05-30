@@ -36,7 +36,7 @@
 */
 
 #include <stdio.h>
-#include <Bits.h>
+#include <MemoryManager.h>
 
 /*!
   Declaration of the character that will count the order of the processes...
