@@ -38,7 +38,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include <DataBank.h>
+#include <MemoryManager.h>
 
 /*!
   A sample structure. The size of this type is 64 bits.
