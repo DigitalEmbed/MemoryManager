@@ -44,7 +44,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include <DataBank.h>
+#include <MemoryManager.h>
 
 /*!
   Main function.
