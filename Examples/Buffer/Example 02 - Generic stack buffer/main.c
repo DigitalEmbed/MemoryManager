@@ -38,7 +38,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include <Buffer.h>
+#include <MemoryManager.h>
 
 /*!
   Definition of sample_t structure.
