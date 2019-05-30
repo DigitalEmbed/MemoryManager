@@ -42,8 +42,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include "Bits/Bits.h"
-#include "MemoryPool/MemoryPool.h"
+#include <MemoryManager.h>
 
 /*!
   There is a macro that automates this process in this 
