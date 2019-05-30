@@ -40,7 +40,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include "MemoryPool/MemoryPool.h"
+#include <MemoryManager.h>
 
 /*!
   Declaration of a char pool. This vector is the data
