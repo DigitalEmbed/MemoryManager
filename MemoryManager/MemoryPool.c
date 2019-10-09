@@ -148,7 +148,7 @@ void* vpMPAlloc(mpool_t* mpMemoryPool, uint16_t ui16AllocationSize){
   \param ui16AllocationSize is a unsigned 16-bit integer. This is the size of space allocation.
 */
 void vMPFree(mpool_t* mpMemoryPool, void** vpAllocatedPointer, uint16_t ui16AllocationSize){
-  if (vpAllocatedPointer != NULL){
+  if (vpAllocatedPointer != NULL && (char*) *vpAllocatedPointer >= (char*) mpMemoryPool->vpDataSpace && (char*) *vpAllocatedPointer <= (char*) mpMemoryPool->vpDataSpace + mpMemoryPool->ui16DataSize){
     int32_t i32StartAllocation = ((char*) *vpAllocatedPointer - (char*) mpMemoryPool->vpDataSpace)/mpMemoryPool->ui8ElementSize;
     uint32_t ui32EndAllocation = (uiModule(i32StartAllocation)) + ui16AllocationSize - 1;
     uint32_t ui32Position = 0;
