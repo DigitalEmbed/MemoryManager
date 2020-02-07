@@ -1,4 +1,4 @@
-//! MemoryManager Version 1.0b
+//! MemoryManager Version 3.2b
 /*!
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
@@ -33,39 +33,101 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef BitVector_H
-#define BitVector_H
+#ifndef __BIT_VECTOR_HEADER__
+  #define __BIT_VECTOR_HEADER__
 
-#include <MemoryManager.h>
-#include <inttypes.h>
+  #include "./Configs.h"
 
-//! Macro: Static Bit Vector Allocation
-/*!
-  This macro are for calculate the iNumber of cell of bit-vectors type.
-*/
-#define       uiBitVectorSize(uiNumberOfBits)                                                                   ((uiNumberOfBits) < 8) ? 1 : (((uiNumberOfBits) >> 3) + 1)
+  #if defined(__BIT_VECTOR_MANAGER_ENABLE__)
 
-//! Macros: Bit Vector Position Calculus
-/*!
-  These macros are for calculate the uiPosition of cell of bit-vectors type and the bit uiPosition of iNumber of cell.
-*/
-#define       uiBitPosition(uiPosition)                                                                         ((uiBitVectorSize(uiPosition)) - (1))
-#define       uiBytePosition(uiPosition)                                                                        ((uiPosition) & (7))
+    #ifdef __cplusplus
+      extern "C" {
+    #endif
 
-//! Macros: Bit Vector Manipulation
-/*!
-  These macros are for calculate the iNumber of cell of bit-vectors type.
-*/
-#define       vSetBitVector(bvBitVector, uiPosition)                                                            vSetBit(bvBitVector[(uiBitPosition(uiPosition))], (uiBytePosition(uiPosition)))
-#define       vEraseBitVector(bvBitVector, uiPosition)                                                          vEraseBit(bvBitVector[(uiBitPosition(uiPosition))], (uiBytePosition(uiPosition)))
-#define       ui8ReadBitVector(bvBitVector, uiPosition)                                                         ui8ReadBit(bvBitVector[(uiBitPosition(uiPosition))], (uiBytePosition(uiPosition)))
+    #include <stdint.h>
+    #include <EmbeddedTools.h>
 
-//! Type Definition: bitvector_t
-/*!
-  This typedef exist for organization purpose. This type is equivalent of a 8-bit unsigned integer.
-*/
-typedef uint8_t bitvector_t;
+    //! Type Definition: bitvector_t
+    /*!
+      This typedef exist for organization purpose. This type is equivalent of a 8-bit unsigned integer.
+    */
+    typedef uint8_t bitvector_t;
 
-#define       xCreateBitVector(bvName, uiSize)                                                                  bitvector_t bvName[uiBitVectorSize(uiSize)]
+    //! Macro: Static Bit Vector Allocation
+    /*!
+      This macro is for calculate the size of cell of bit-vectors type.
+      \param uiAmountOfBit is a unsigned integer. It's a desirable amount of bits.
+      \return Returns real uint8_t vector size.
+    */
+    #define BitVector_getSize(uiAmountOfBit)\
+      (((uiAmountOfBit) < 8) ? 1 : (((uiAmountOfBit - 1) >> 3) + 1))
 
+    //! Macro: Bit Vector Creator
+    /*!
+      This macro creates a bit vector.
+      \param bvName is a bit vector name.
+      \param uiAmountOfBit is a unsigned integer. It's the desirable amount of bits. If possible, chose a 8 multiple number.
+    */
+    #define newBitVector(bvName, uiAmountOfBit)\
+      bitvector_t bvName[BitVector_getSize(uiAmountOfBit)] = {0}
+
+    //! Macro: Static Bit Vector Creator
+    /*!
+      This macro creates a static bit vector.
+      \param bvName is a bit vector name.
+      \param uiAmountOfBit is a unsigned integer. It's the desirable amount of bits. If possible, chose a 8 multiple number.
+    */
+    #define newStaticBitVector(bvName, uiAmountOfBit)\
+      static bitvector_t bvName[BitVector_getSize(uiAmountOfBit)] = {0}
+
+    //! Macro: Bit Position Calculus
+    /*!
+      These macros are for calculate the bit position of bit-vectors type.
+      \param uiPosition is a unsigned integer. It's the desirable position.
+      \return Returns bit position.
+    */
+    #define BitVector_getBytePosition(uiPosition)\
+      (((uiPosition) < 8) ? 0 : ((uiPosition) >> 3))
+
+    //! Macro: Bit Position Calculus
+    /*!
+      These macros are for calculate the position of cell of bit-vectors.
+      \param uiPosition is a unsigned integer. It's the desirable position.
+      \return Returns byte position.
+    */
+    #define BitVector_getBitPosition(uiPosition)\
+      ((uiPosition) & (7))
+
+    //! Macro: Bit Vector Setter
+    /*!
+      Sets a bit of bit vector.
+      \param bvBitVector is a bit_vector_t type. It's the bit vector.
+      \param uiPosition is a unsigned integer. It's the desirable position.
+    */
+    #define BitVector_setBit(bvBitVector, uiPosition)\
+      Bitwise_setBit(bvBitVector[(BitVector_getBytePosition(uiPosition))], (BitVector_getBitPosition(uiPosition)))
+
+    //! Macro: Bit Vector Eraser
+    /*!
+      Erases a bit of bit vector.
+      \param bvBitVector is a bit_vector_t type. It's the bit vector.
+      \param uiPosition is a unsigned integer. It's the desirable position.
+    */
+    #define BitVector_clearBit(bvBitVector, uiPosition)\
+      Bitwise_clearBit(bvBitVector[(BitVector_getBytePosition(uiPosition))], (BitVector_getBitPosition(uiPosition)))
+
+    //! Macro: Bit Vector Reader
+    /*!
+      Reads a bit of bit vector.
+      \param bvBitVector is a bit_vector_t type. It's the bit vector.
+      \param uiPosition is a unsigned integer. It's the desirable position.
+    */
+    #define BitVector_readBit(bvBitVector, uiPosition)\
+      Bitwise_readBit(bvBitVector[(BitVector_getBytePosition(uiPosition))], (BitVector_getBitPosition(uiPosition)))
+
+    #ifdef __cplusplus
+      }
+    #endif
+
+  #endif
 #endif

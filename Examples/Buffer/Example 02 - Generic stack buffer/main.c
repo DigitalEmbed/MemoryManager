@@ -49,18 +49,9 @@ typedef struct{
 }sample_t;
 
 int main(){
-  /*!
-    Initializing stack buffer manager...
-  */
-  if (ui8BufferManagerInit() != BUFFER_INITIALIZED){                                                                    /*!< If not possible stack buffer manager initialization... */
-    printf("ERROR: Stack buffer manager initialization error!");                                                        /*!< Print an error message and returns 2 for the operational system. */
-    return 2;                                                                                                           /*!< You can treat the problem any way you want! */
-  }
-
   const uint8_t ui8SizeOfVector = 5;
-  sample_t sSampleStruct[ui8SizeOfVector];
-  buffer_t* bpSampleStruct = bpCreateGenericBuffer(&sSampleStruct, STACK, sizeof(sample_t), ui8SizeOfVector);
-  if (bpSampleStruct == NULL){                                                                                          /*!< If not possible stack buffer allocation... */
+  newStaticBuffer(bfSampleStruct, BUFFER_TYPE_STACK, sample_t, 5);
+  if (bfSampleStruct == NULL){                                                                                          /*!< If not possible stack buffer allocation... */
     printf("\nERROR: Allocation for stack buffer error!");                                                              /*!< Print an error message and returns 3 for the operational system. */
     return 3;                                                                                                           /*!< You can treat the problem any way you want! */
   }
@@ -70,22 +61,22 @@ int main(){
   */
   printf("Writing data on stack buffer... ");
   uint8_t ui8Counter = 0;
-  for (ui8Counter = 0; ui8Counter < 5; ui8Counter ++){
-    sample_t sBuffer;
-    sBuffer.cSample = ui8Counter + 'a';
-    sBuffer.ui16Sample = ui8Counter;
-    vPushBufferData(bpSampleStruct, &sBuffer);
+  for (ui8Counter = 0; ui8Counter < ui8SizeOfVector; ui8Counter ++){
+    sample_t spBuffer;
+    spBuffer.cSample = ui8Counter + 'a';
+    spBuffer.ui16Sample = ui8Counter;
+    Buffer_push(bfSampleStruct, &spBuffer);
   }
 
   /*!
     Reading data in stack buffer...
   */
   printf("Complete!\n\nReading data on stack buffer:\n");
-  for (ui8Counter = 0; ui8Counter < 5; ui8Counter ++){
-    sample_t* sBuffer = (sample_t*) vpPullBufferData(bpSampleStruct);
-    if (sBuffer != NULL){
-      uint16_t ui16Buffer = sBuffer->ui16Sample;
-      char cBuffer = sBuffer->cSample;
+  for (ui8Counter = 0; ui8Counter < ui8SizeOfVector; ui8Counter ++){
+    sample_t* spBuffer = Buffer_popAddress(bfSampleStruct, sample_t);
+    if (spBuffer != NULL){
+      uint16_t ui16Buffer = spBuffer->ui16Sample;
+      char cBuffer = spBuffer->cSample;
       printf("\nPosition %d:\n  ui16Buffer: %d\n  cBuffer: %c\n", ui8Counter, ui16Buffer, cBuffer);
     }
   }
@@ -94,26 +85,15 @@ int main(){
     Cleaning the stack buffer... This function is only for queue or stack buffer type.
   */
   printf("\nCleaning stack buffer... ");
-  vCleanBuffer(bpSampleStruct);
-  uint16_t* ui16Buffer = (uint16_t*) vpPullBufferData(bpSampleStruct);
-  if (ui16Buffer == NULL){
+  Buffer_clear(bfSampleStruct);
+  sample_t* spBuffer = Buffer_popAddress(bfSampleStruct, sample_t);
+  if (spBuffer == NULL){
     printf("The stack buffer is empty");
   }
   else{
     printf("ERROR: The stack buffer is not cleaned!");                                                                  /*!< Print an error message and returns 4 for the operational system. */
     return 4;                                                                                                           /*!< You can treat the problem any way you want! */
   }
-
-  /*!
-    Deleting the stack buffer...
-  */
-  printf("\n\nDeleting the stack buffer... ");
-  vDeleteBuffer(&bpSampleStruct);
-  if (bpSampleStruct != NULL){                                                                                          /*!< If the pointer is not NULL... */
-    printf("\nERROR: The stack is not deleted!");                                                                       /*!< Print an error message and returns 5 for the operational system. */
-    return 5;                                                                                                           /*!< You can treat the problem any way you want! */
-  }
-
-  printf("Complete deletion!\n");
   return 0;
 }
+

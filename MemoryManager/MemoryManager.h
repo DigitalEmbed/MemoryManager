@@ -32,58 +32,25 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef MemoryManager_H
-#define MemoryManager_H
+#ifndef __MEMORY_MANAGER_HEADER__
+  #define __MEMORY_MANAGER_HEADER__
 
-#ifdef __cplusplus
-  extern "C" {
-#endif
+  #ifdef __cplusplus
+    extern "C" {
+  #endif
 
-#include <inttypes.h>
-#include <EmbeddedTools.h>
+  /*!
+    MemoryManager system libraries.
+  */
+  #include "./BitVector.h"
+  #include "./MemoryPool.h"
+  #include "./DataBank.h"
+  #include "./Buffer.h"
+  #include "./TypedList.h"
+  #include "./UntypedList.h"
 
-/*!
-  MemoryManager system libraries.
-*/
-#include "BitVector.h"
-#include "MemoryPool.h"
-#include "DataBank.h"
-#include "Buffer.h"
-#include "LinkedList.h"
-
-/*!
-  Memory Manager Initialization Status.
-*/
-#define   MEMORY_MANAGER_INITIALIZED          1
-#define   MEMORY_MANAGER_NOT_INTIALIZED       0
-
-//! Configuration: Memory Manager
-/*!
-  Configure the MemoryManager system here.
-*/
-#define   SIZE_MPOOL_8BIT                     280
-#define   SIZE_MPOOL_16BIT                    40
-#define   SIZE_MPOOL_32BIT                    20
-#define   SIZE_MPOOL_64BIT                    10
-
-//! Configuration: Linked List Manager
-/*!
-  Configure the MemoryManager system linked list manager here.
-*/
-#define   NUMBER_OF_LISTS                     5
-#define   NUMBER_OF_TYPED_ELEMENT             10
-#define   NUMBER_OF_UNTYPED_ELEMENT           10
-
-//! Configuration: Buffer Manager
-/*!
-  Configure the MemoryManager system buffer manager here.
-*/
-#define   NUMBER_OF_BUFFER                    5
-
-uint8_t ui8MemoryManagerInit(void); 					/*!< 8-bits integer type function. */
-
-#ifdef __cplusplus
-  }
-#endif
+  #ifdef __cplusplus
+    }
+  #endif
 
 #endif

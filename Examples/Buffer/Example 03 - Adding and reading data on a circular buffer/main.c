@@ -40,18 +40,10 @@
 #include <MemoryManager.h>
 
 int main(){
-  /*!
-    Initializing buffer manager...
-  */
-  if (ui8BufferManagerInit() != BUFFER_INITIALIZED){                                                                    /*!< If not possible circular buffer manager initialization... */
-    printf("ERROR: Buffer manager initialization error!");                                                              /*!< Print an error message and returns 2 for the operational system. */
-    return 2;                                                                                                           /*!< You can treat the problem any way you want! */
-  }
-
-  buffer_t* bpBuffer = bpCreateBuffer(CIRCULAR, sizeof(uint16_t), 5);
-  if (bpBuffer == NULL){                                                                                                /*!< If not possible circular buffer allocation... */
-    printf("\nERROR: Allocation for circular buffer error!");                                                              /*!< Print an error message and returns 3 for the operational system. */
-    return 3;                                                                                                           /*!< You can treat the problem any way you want! */
+  newBuffer(bfBuffer, BUFFER_TYPE_CIRCULAR, uint16_t, 5);
+  if (bfBuffer == NULL){                                                                  /*!< If not possible circular buffer allocation... */
+    printf("\nERROR: Allocation for circular buffer error!");                             /*!< Print an error message and returns 3 for the operational system. */
+    return 3;                                                                             /*!< You can treat the problem any way you want! */
   }
 
   /*!
@@ -61,7 +53,7 @@ int main(){
   uint8_t ui8Counter = 0;
   for (ui8Counter = 0; ui8Counter < 15; ui8Counter ++){
     uint16_t ui16Buffer = ui8Counter;
-    vPushBufferData(bpBuffer, &ui16Buffer);
+    Buffer_push(bfBuffer, &ui16Buffer);
   }
 
   /*!
@@ -69,36 +61,24 @@ int main(){
   */
   printf("Complete!\n\nReading data on circular buffer:");
   for (ui8Counter = 0; ui8Counter < 10; ui8Counter ++){
-    uint16_t* ui16Buffer = (uint16_t*) vpPullBufferData(bpBuffer);
-    if (ui16Buffer != NULL){
-      printf("\nPosition %d: %d", ui8Counter, *ui16Buffer);
-    }
+    printf("\nPosition %d: %d", ui8Counter, Buffer_pop(bfBuffer, uint16_t));
   }
 
   /*!
     Cleaning the circular buffer... This function is only for circular or stack buffer type.
   */
   printf("\n\nCleaning circular buffer... ");
-  vCleanBuffer(bpBuffer);
-  uint16_t* ui16Buffer = (uint16_t*) vpPullBufferData(bpBuffer);
-  if (ui16Buffer == NULL){
-    printf("The circular buffer is empty");
+  Buffer_clear(bfBuffer);
+  uint16_t* ui16pBuffer = Buffer_popAddress(bfBuffer, uint16_t);
+  if (ui16pBuffer == NULL){
+    printf("The circular buffer is empty!\n\n");
   }
   else{
-    printf("ERROR: The circular buffer is not cleaned!");                                                                  /*!< Print an error message and returns 4 for the operational system. */
-    return 4;                                                                                                           /*!< You can treat the problem any way you want! */
-  }
-
-  /*!
-    Deleting the circular buffer...
-  */
-  printf("\n\nDeleting the circular buffer... ");
-  vDeleteBuffer(&bpBuffer);
-  if (bpBuffer != NULL){                                                                                                /*!< If the pointer is not NULL... */
-    printf("\nERROR: The circular buffer is not deleted!");                                                                /*!< Print an error message and returns 5 for the operational system. */
-    return 5;                                                                                                           /*!< You can treat the problem any way you want! */
+    printf("ERROR: The circular buffer is not cleaned!");                                 /*!< Print an error message and returns 4 for the operational system. */
+    return 4;                                                                             /*!< You can treat the problem any way you want! */
   }
 
   printf("Complete deletion!\n");
   return 0;
 }
+

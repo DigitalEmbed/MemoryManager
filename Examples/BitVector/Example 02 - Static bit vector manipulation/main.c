@@ -1,5 +1,7 @@
-//! MemoryManager Version 3.2b
+//! Example 02 - Static bit vector manipulation
 /*!
+  This simply example demonstrates the use of bit vector manipulation.
+
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
 
@@ -33,23 +35,53 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef __CIRCULAR_HEADER__
-  #define __CIRCULAR_HEADER__
+#include <stdio.h>
+#include <stdbool.h>
+#include <MemoryManager.h>
 
-  #include "./Buffer.h"
+int main(){
+  /*!
+    A) Declaring a bit vector...
+    Always try to define the size with multiple numbers of 8!
+    All bits is 0!
+  */
+  newStaticBitVector(bvMyFlags, 16);
 
-  #if defined(__BUFFER_MANAGER_ENABLE__)
+  /*!
+    B) Declaring a bool vector (for comparations purpose only)...
+  */
+  bool bBoolVector[16] = {false};
 
-    #ifdef __cplusplus
-      extern "C" {
-    #endif
+  /*!
+    C) Comparing...
+  */
+  printf("Size of bBoolVector: %d bytes\n", (int) sizeof(bBoolVector));
+  printf("Size of bvMyFlags: %d bytes\n\n", (int) sizeof(bvMyFlags));
 
-    void __CircularBuffer_push(buffer_t bfBuffer, void* vpData);                /*!< void type function. */
-    void* __CircularBuffer_pop(buffer_t bfBuffer);                              /*!< void pointer type function. */
+  /*!
+    C) Reading bit 4...
+  */
+  printf("Bit 4 value: %d\n\n", BitVector_readBit(bvMyFlags, 4));
 
-    #ifdef __cplusplus
-      }
-    #endif
+  /*!
+    D) Setting bit 4...
+  */
+  BitVector_setBit(bvMyFlags, 4);
 
-  #endif
-#endif
+  /*!
+    E) Reading bit 4...
+  */
+  printf("Bit 4 value: %d\n\n", BitVector_readBit(bvMyFlags, 4));
+
+  /*!
+    F) Erasing bit 4...
+  */
+  BitVector_clearBit(bvMyFlags, 4);
+
+  /*!
+    E) Reading bit 4...
+  */
+  printf("Bit 4 value: %d\n", BitVector_readBit(bvMyFlags, 4));
+  return 0;
+}
+

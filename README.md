@@ -10,7 +10,7 @@ The set of libraries was made in C in order to reach the majority of embedded pr
 
 ### BitVector
 
-With this library it is possible from the manipulation of bits in a variable to the creation of bit vectors. They are ideal for programs that have many binary variables because they have a large memory economy, and are handled faster by the processor/microcontroller.
+The bool type is extremely inefficient because it contains 8 bits but uses only 1, that is, we have a waste of 87.5% of the memory allocated to this type. The purpose of this library is to increase the efficiency of this type, trying to use all the bits present in a byte for binary variables.
 
 ### MemoryPool
 
@@ -142,7 +142,7 @@ O conjunto de bibliotecas foi feito em C visando atingir a maior parte de progra
 
 ### BitVector
 
-Com essa biblioteca é possível desde a manipulação de bits em uma variável até a criação de vetores de bits. São ideais em programas que possuam muitas variáveis binárias por ter uma grande economia de memória, além de ser manipulada mais rapidamente pelo processador/microcontrolador.
+O tipo bool é extremamente ineficiente por conter 8 bits mas usar apenas 1, ou seja, temos um desperdício de 87.5% da memória alocada para este tipo. O propósito desta biblioteca é aumentar a eficiência deste tipo, procurando usar todos os bits presentes em um byte para variáveis binárias.
 
 ### MemoryPool
 

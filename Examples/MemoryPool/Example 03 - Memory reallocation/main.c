@@ -2,9 +2,6 @@
 /*!
   This simply example demonstrates the use of reallocation function.
 
-  Put the "Bits" and "MemoryPool" library folder in the same location as 
-  this file.
-
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
 
@@ -50,26 +47,18 @@
   old allocation size with the new size of non-fragmented
   free space in your memory pool.
 */
-xCreatePool(mpCharPool, char, 150);
+newMemoryPool(mpCharPool, sizeof(char), 150);
 
 /*!
   Main function.
 */
 int main(){
-  /*!
-    Memory Pool creating...
-  */
-  if (ui8PoolInit(mpCharPool) == MEMORYPOOL_INIT_ERROR){                  /*!< If not possible memory pool allocation... */
-    printf("ERROR: Memory Pool init error!");                             /*!< Print an error message and returns 1 for the operational system. */
-    return 1;                                                             /*!< You can treat the problem any way you want! */
-  }
 
   /*!
     Allocating...
   */
-  char* cpSampleA = (char*) vpMPAlloc(&mpCharPool, 26);
-  char* cpSampleB = NULL;
-  if (cpSampleA == NULL){                                                 /*!< If the pointer is NULL... */
+  char* cpSample = (char*) MemoryPool_calloc(mpCharPool, 26);
+  if (cpSample == NULL){                                                  /*!< If the pointer is NULL... */
     printf("ERROR: Dynamic memory allocation error!");                    /*!< Print an error message and returns 2 for the operational system. */
     return 2;                                                             /*!< You can treat the problem any way you want! */
   }
@@ -79,7 +68,7 @@ int main(){
   */
   char cBuffer = 0;
   for (cBuffer = 'a' ; cBuffer < 'z' + 1 ; cBuffer++){
-    cpSampleA[cBuffer - 'a'] = cBuffer;
+    cpSample[cBuffer - 'a'] = cBuffer;
   }
 
   /*!
@@ -88,19 +77,19 @@ int main(){
   printf("Printing the contents of the cSampleA pointer:\n[");
   uint8_t ui8Counter = 0;
   for (ui8Counter = 0 ; ui8Counter < 26 ; ui8Counter++){
-    printf(" %c", cpSampleA[ui8Counter]);
+    printf(" %c", cpSample[ui8Counter]);
   }
   printf(" ]\n");
 
   /*!
     Reallocating...
   */
-  if (ui16MPGetFragmentedFreeSpace(&mpCharPool) < (26 + 52)){             /*!< If not enough space for reallocation... */
+  if (MemoryPool_getMaxFreeSpace(mpCharPool) < (26 + 52)){                /*!< If not enough space for reallocation... */
     printf("ERROR: No enough space for memory reallocation!");            /*!< Print an error message and returns 3 for the operational system. */
     return 3;                                                             /*!< You can treat the problem any way you want! */
   }
-  cpSampleB = vpMPRealloc(&mpCharPool, (void**) &cpSampleA, 26, 52);
-  if (cpSampleB == NULL || cpSampleA != NULL){                            /*!< If the pointer is NULL... */
+  MemoryPool_realloc(mpCharPool, &cpSample, 26, 52);
+  if (cpSample == NULL){                                                  /*!< If the pointer is NULL... */
     printf("ERROR: Dynamic memory reallocation error!");                  /*!< Print an error message and returns 2 for the operational system. */
     return 2;                                                             /*!< You can treat the problem any way you want! */
   }
@@ -109,7 +98,7 @@ int main(){
     Writing data in Memory Pool...
   */
   for (char cBuffer = 'A' ; cBuffer < 'Z' + 1 ; cBuffer++){
-    cpSampleB[26 + cBuffer - 'A'] = cBuffer;
+    cpSample[26 + cBuffer - 'A'] = cBuffer;
   }
 
   /*!
@@ -117,9 +106,10 @@ int main(){
   */
   printf("\nPrinting the contents of the cSampleB pointer:\n[");
   for (uint8_t ui8Counter = 0 ; ui8Counter < 52 ; ui8Counter++){
-    printf(" %c", cpSampleB[ui8Counter]);
+    printf(" %c", cpSample[ui8Counter]);
   }
   printf(" ]\n");
 
   return 0;
 }
+

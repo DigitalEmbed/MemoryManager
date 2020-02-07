@@ -2,7 +2,7 @@
 /*!
   This simply example demonstrates the use of reallocation function. When
   reallocating, you need at least the sum of the old allocation size with
-  the new size of non-fragmented free space in your memory pool. 
+  the new size of non-fragmented free space in your memory pool.
 
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
@@ -46,19 +46,10 @@
 */
 int main(){
   /*!
-    Memory Pool initializing...
-  */
-  if (ui8DataBankInit() != DATABANK_INITIALIZED){                                                         /*!< If not possible data bank initialization... */
-    printf("ERROR: Data Bank initialization error!");                                                     /*!< Print an error message and returns 1 for the operational system. */
-    return 1;                                                                                             /*!< You can treat the problem any way you want! */
-  }
-
-  /*!
     Allocating...
   */
-  uint8_t* ui8SampleA = (uint8_t*) vpDBAlloc(sizeof(uint8_t), 20);
-  uint8_t* ui8SampleB = NULL;
-  if (ui8SampleA == NULL){                                                                                /*!< If not possible memory pool allocation... */
+  uint8_t* ui8Sample = (uint8_t*) DataBank_calloc(sizeof(uint8_t), 20);
+  if (ui8Sample == NULL){                                                                                 /*!< If not possible memory pool allocation... */
     printf("ERROR: Allocation memories error!");                                                          /*!< Print an error message and returns 2 for the operational system. */
     return 2;                                                                                             /*!< You can treat the problem any way you want! */
   }
@@ -68,27 +59,27 @@ int main(){
   */
   uint8_t ui8Buffer = 0;
   for (ui8Buffer = 0 ; ui8Buffer < 20 ; ui8Buffer++){
-    ui8SampleA[ui8Buffer] = ui8Buffer;
+    ui8Sample[ui8Buffer] = ui8Buffer;
   }
 
   /*!
     Reading data in Memory Pool...
   */
-  printf("Printing the contents of the ui8SampleA pointer:\n[");
+  printf("Printing the contents of the ui8Sample pointer:\n[");
   for (uint8_t ui8Counter = 0 ; ui8Counter < 20 ; ui8Counter++){
-    printf(" %d", ui8SampleA[ui8Counter]);
+    printf(" %d", ui8Sample[ui8Counter]);
   }
   printf(" ]\n");
 
   /*!
     Reallocating...
   */
-  if (ui16GetFragmentedFreeSpace(sizeof(uint8_t)) < (20 + 30)){                                           /*!< If not enough space for reallocation... */
+  if (DataBank_getMaxFreeSpace(sizeof(uint8_t)) < (20 + 30)){                                             /*!< If not enough space for reallocation... */
     printf("ERROR: No enough space for memory reallocation!");                                            /*!< Print an error message and returns 3 for the operational system. */
     return 3;                                                                                             /*!< You can treat the problem any way you want! */
   }
-  ui8SampleB = vpDBRealloc(sizeof(uint8_t), (void*) &ui8SampleA, 20, 30);
-  if (ui8SampleB == NULL && ui8SampleA != NULL){                                                          /*!< If the pointer is NULL... */
+  DataBank_realloc(sizeof(uint8_t), &ui8Sample, 20, 30);
+  if (DataBank_realloc(sizeof(uint8_t), &ui8Sample, 20, 30) != DATA_BANK_STATUS_REALLOCATED_MEMORY){      /*!< If the pointer is NULL... */
     printf("ERROR: Dynamic memory reallocation error!");                                                  /*!< Print an error message and returns 2 for the operational system. */
     return 2;                                                                                             /*!< You can treat the problem any way you want! */
   }
@@ -97,7 +88,7 @@ int main(){
     Writing data in Memory Pool...
   */
   for (ui8Buffer = 20 ; ui8Buffer < 30 ; ui8Buffer++){
-    ui8SampleB[ui8Buffer] = ui8Buffer;
+    ui8Sample[ui8Buffer] = ui8Buffer;
   }
 
   /*!
@@ -105,9 +96,10 @@ int main(){
   */
   printf("\nPrinting the contents of the ui8SampleB pointer:\n[");
   for (uint8_t ui8Counter = 0 ; ui8Counter < 30 ; ui8Counter++){
-    printf(" %d", ui8SampleB[ui8Counter]);
+    printf(" %d", ui8Sample[ui8Counter]);
   }
   printf(" ]");
 
   return 0;
 }
+

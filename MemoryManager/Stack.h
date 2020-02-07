@@ -1,3 +1,4 @@
+//! MemoryManager Version 3.2b
 /*!
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
@@ -32,20 +33,23 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef Stack_H
-#define Stack_H
+#ifndef __STACK_HEADER__
+  #define __STACK_HEADER__
 
-#ifdef __cplusplus
-  extern "C" {
-#endif
+  #include "./Buffer.h"
 
-#include "Buffer.h"
+  #if defined(__BUFFER_MANAGER_ENABLE__)
 
-void vPushStackBuffer(buffer_t* bpBuffer, void* vpData);                                                /*!< Void type function. */
-void* vpPullStackBuffer(buffer_t* bpBuffer);                                                            /*!< Void pointer type function. */
+    #ifdef __cplusplus
+      extern "C" {
+    #endif
 
-#ifdef __cplusplus
-  }
-#endif
+    void __StackBuffer_push(buffer_t bfBuffer, void* vpData);                   /*!< void type function. */
+    void* __StackBuffer_pop(buffer_t bfBuffer);                                 /*!< void pointer type function. */
 
+    #ifdef __cplusplus
+      }
+    #endif
+
+  #endif
 #endif

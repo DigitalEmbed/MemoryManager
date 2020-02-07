@@ -36,20 +36,12 @@
 */
 
 #include <stdio.h>
-#include <inttypes.h>
+#include <stdint.h>
 #include <MemoryManager.h>
 
 int main(){
-  /*!
-    Initializing buffer manager...
-  */
-  if (ui8BufferManagerInit() != BUFFER_INITIALIZED){                                                                    /*!< If not possible queue buffer manager initialization... */
-    printf("ERROR: Buffer manager initialization error!");                                                              /*!< Print an error message and returns 2 for the operational system. */
-    return 2;                                                                                                           /*!< You can treat the problem any way you want! */
-  }
-
-  buffer_t* bpBuffer = bpCreateBuffer(QUEUE, sizeof(uint16_t), 5);
-  if (bpBuffer == NULL){                                                                                                /*!< If not possible queue buffer allocation... */
+  newBuffer(bfBuffer, BUFFER_TYPE_QUEUE, uint16_t, 5);
+  if (bfBuffer == NULL){                                                                                                /*!< If not possible queue buffer allocation... */
     printf("\nERROR: Allocation for queue buffer error!");                                                              /*!< Print an error message and returns 3 for the operational system. */
     return 3;                                                                                                           /*!< You can treat the problem any way you want! */
   }
@@ -61,44 +53,32 @@ int main(){
   uint8_t ui8Counter = 0;
   for (ui8Counter = 0; ui8Counter < 15; ui8Counter ++){
     uint16_t ui16Buffer = ui8Counter;
-    vPushBufferData(bpBuffer, &ui16Buffer);
+    Buffer_push(bfBuffer, &ui16Buffer);
   }
 
   /*!
     Reading data in queue buffer...
   */
   printf("Complete!\n\nReading data on queue buffer:");
-  for (ui8Counter = 0; ui8Counter < 10; ui8Counter ++){
-    uint16_t* ui16Buffer = (uint16_t*) vpPullBufferData(bpBuffer);
-    if (ui16Buffer != NULL){
-      printf("\nPosition %d: %d", ui8Counter, *ui16Buffer);
-    }
+  for (ui8Counter = 0; Buffer_getAmountOfPendingData(bfBuffer) > 0; ui8Counter ++){
+    printf("\nPosition %d: %d", ui8Counter, Buffer_pop(bfBuffer, uint16_t));
   }
 
   /*!
     Cleaning the queue buffer... This function is only for queue or stack buffer type.
   */
   printf("\n\nCleaning queue buffer... ");
-  vCleanBuffer(bpBuffer);
-  uint16_t* ui16Buffer = (uint16_t*) vpPullBufferData(bpBuffer);
+  Buffer_clear(bfBuffer);
+  uint16_t* ui16Buffer = Buffer_popAddress(bfBuffer, uint16_t);
   if (ui16Buffer == NULL){
     printf("The queue buffer is empty");
   }
   else{
-    printf("ERROR: The queue buffer is not cleaned!");                                                                  /*!< Print an error message and returns 4 for the operational system. */
+    printf("ERROR: The queue buffer is not cleaned!\n\n");                                                              /*!< Print an error message and returns 4 for the operational system. */
     return 4;                                                                                                           /*!< You can treat the problem any way you want! */
-  }
-
-  /*!
-    Deleting the queue buffer...
-  */
-  printf("\n\nDeleting the queue buffer... ");
-  vDeleteBuffer(&bpBuffer);
-  if (bpBuffer != NULL){                                                                                                /*!< If the pointer is not NULL... */
-    printf("\nERROR: The queue buffer is not deleted!");                                                                /*!< Print an error message and returns 5 for the operational system. */
-    return 5;                                                                                                           /*!< You can treat the problem any way you want! */
   }
 
   printf("Complete deletion!\n");
   return 0;
 }
+

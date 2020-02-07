@@ -37,7 +37,7 @@
 */
 
 #include <stdio.h>
-#include <inttypes.h>
+#include <stdint.h>
 #include <MemoryManager.h>
 
 /*!
@@ -47,9 +47,9 @@
   a memory pool for allocation of this type.
 */
 typedef struct{
-  uint8_t ui8Integer;
-  char cCharacter;
-  float fFloat;
+  uint16_t ui16Integer;
+  char cCharacterA;
+  char cCharacterB;
 } AnyStruct;
 
 /*!
@@ -57,20 +57,12 @@ typedef struct{
 */
 int main(){
   /*!
-    Data Bank initializing...
-  */
-  if (ui8DataBankInit() != DATABANK_INITIALIZED){                                                                       /*!< If not possible data bank initialization... */
-    printf("ERROR: Data Bank initialization error!");                                                                   /*!< Print an error message and returns 1 for the operational system. */
-    return 1;                                                                                                           /*!< You can treat the problem any way you want! */
-  }
-
-  /*!
     Allocating...
   */
-  float* fpFloatSample = (float*) vpDBAlloc(sizeof(float), 5);
-  char* cpCharSample = (char*) vpDBAlloc(sizeof(char), 5);
-  uint8_t* ui8pIntegerSample = (uint8_t*) vpDBAlloc(sizeof(uint8_t), 5);
-  AnyStruct* sspStructSample = (AnyStruct*) vpDBAlloc(sizeof(AnyStruct), 5);
+  float* fpFloatSample = (float*) DataBank_malloc(sizeof(float), 5);
+  char* cpCharSample = (char*) DataBank_malloc(sizeof(char), 5);
+  uint8_t* ui8pIntegerSample = (uint8_t*) DataBank_malloc(sizeof(uint8_t), 5);
+  AnyStruct* sspStructSample = (AnyStruct*) DataBank_malloc(sizeof(AnyStruct), 5);
   if (fpFloatSample == NULL || cpCharSample == NULL || ui8pIntegerSample == NULL || sspStructSample == NULL){           /*!< If not possible memory pool allocation... */
     printf("\nERROR: Allocation memories error!");                                                                      /*!< Print an error message and returns 2 for the operational system. */
     return 2;                                                                                                           /*!< You can treat the problem any way you want! */
@@ -84,9 +76,9 @@ int main(){
     fpFloatSample[ui8Counter] = 3.14*ui8Counter;
     cpCharSample[ui8Counter] = 'a' + ui8Counter;
     ui8pIntegerSample[ui8Counter] = ui8Counter;
-    sspStructSample[ui8Counter].cCharacter = 'A' + ui8Counter;
-    sspStructSample[ui8Counter].fFloat = 2.71*ui8Counter;
-    sspStructSample[ui8Counter].ui8Integer = ui8Counter*10;
+    sspStructSample[ui8Counter].cCharacterA = 'A' + ui8Counter;
+    sspStructSample[ui8Counter].cCharacterB = 'z' - ui8Counter;
+    sspStructSample[ui8Counter].ui16Integer = ui8Counter*10;
   }
 
   /*!
@@ -120,20 +112,20 @@ int main(){
     Reading AnyStruct type data in Memory Pool...
   */
   printf("\nPrinting sspStructSample:");
-  for (uint8_t ui8Counter = 1 ; ui8Counter < 5 ; ui8Counter++){
-    printf("\n\nui8Integer: %d", sspStructSample[ui8Counter].ui8Integer);
-    printf("\nfFloat: %.2f", sspStructSample[ui8Counter].fFloat);
-    printf("\ncCharacter: %c", sspStructSample[ui8Counter].cCharacter);
+  for (uint8_t ui8Counter = 0 ; ui8Counter < 5 ; ui8Counter++){
+    printf("\n\nui16Integer: %d", sspStructSample[ui8Counter].ui16Integer);
+    printf("\ncCharacterA: %c", sspStructSample[ui8Counter].cCharacterA);
+    printf("\ncCharacterB: %c", sspStructSample[ui8Counter].cCharacterB);
   }
   printf("\n");
 
   /*!
     Deleting data in Memory Pool...
   */
-  vDBFree(&fpFloatSample, sizeof(float), 5);
-  vDBFree(&cpCharSample, sizeof(char), 5);
-  vDBFree(&ui8pIntegerSample, sizeof(uint8_t), 5);
-  vDBFree(&sspStructSample, sizeof(AnyStruct), 5);
+  DataBank_free(&fpFloatSample, sizeof(float), 5);
+  DataBank_free(&cpCharSample, sizeof(char), 5);
+  DataBank_free(&ui8pIntegerSample, sizeof(uint8_t), 5);
+  DataBank_free(&sspStructSample, sizeof(AnyStruct), 5);
   if((fpFloatSample != NULL) || (cpCharSample  != NULL) || (ui8pIntegerSample  != NULL) || (sspStructSample != NULL)){    /*!< If any pointer is not NULL... */
     printf("\nERROR: Dynamic memory deallocation error!\n");                                                              /*!< Print an error message and returns 3 for the operational system. */
     return 3;                                                                                                             /*!< You can treat the problem any way you want! */
@@ -141,3 +133,4 @@ int main(){
 
   return 0;
 }
+

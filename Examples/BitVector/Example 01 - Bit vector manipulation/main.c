@@ -1,5 +1,7 @@
-//! MemoryManager Version 3.2b
+//! Example 01 - Bit vector manipulation
 /*!
+  This simply example demonstrates the use of a bit vector.
+
   This code file was written by Jorge Henrique Moreira Santana and is under
   the GNU GPLv3 license. All legal rights are reserved.
 
@@ -33,23 +35,39 @@
   to jorge_henrique_123@hotmail.com to talk.
 */
 
-#ifndef __CIRCULAR_HEADER__
-  #define __CIRCULAR_HEADER__
+#include <stdio.h>
+#include <MemoryManager.h>
 
-  #include "./Buffer.h"
+int main(){
+  /*!
+    Creating the bit vector. Use as multiple sizes of 8 for less memory waste.
+  */
+  newBitVector(bvExample, 8);
 
-  #if defined(__BUFFER_MANAGER_ENABLE__)
+  /*!
+    Seting vector bit position 0...
+  */
+  BitVector_setBit(bvExample, 0);
 
-    #ifdef __cplusplus
-      extern "C" {
-    #endif
+  /*!
+    Verifying that the action has been completed...
+  */
+  if (BitVector_readBit(bvExample, 0) == 1){
+    printf("This position is seted!\n");
+  }
 
-    void __CircularBuffer_push(buffer_t bfBuffer, void* vpData);                /*!< void type function. */
-    void* __CircularBuffer_pop(buffer_t bfBuffer);                              /*!< void pointer type function. */
+  /*!
+    Erasing vector bit position 0...
+  */
+  BitVector_clearBit(bvExample, 0);
 
-    #ifdef __cplusplus
-      }
-    #endif
+  /*!
+    Verifying that the action has been completed...
+  */
+  if (BitVector_readBit(bvExample, 0) == 0){
+    printf("Now, this position is unseted!\n");
+  }
 
-  #endif
-#endif
+  return 0;
+}
+
