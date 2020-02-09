@@ -62,7 +62,7 @@ Each processor sets a size for the pointers. In an Arduino UNO (ATMega328p), for
 	Bytes = 10 + 1 + sizeof (YourVariable)
 	Bytes = 11 + sizeof (YourVariable)
 
-As you can see, storing any data requires 11 bytes more than direct storage in memory: A char, for example, would consume 12 bytes of memory if allocated in a typed chained list and 1 byte if allocated statically or dynamically. One should then use this artifice with caution. See the examples before implementing them in your firmware. **The linked lists of this solution support storing non-primitive C types as long as the size of this type does not exceed 64-bits**.
+As you can see, storing any data requires 11 bytes more than direct storage in memory: A char, for example, would consume 12 bytes of memory if allocated in a typed chained list and 1 byte if allocated statically or dynamically. One should then use this artifice with caution. See the examples before implementing them in your firmware.
 
 ### Buffer
 
@@ -193,7 +193,7 @@ Cada processador define um tamanho para os ponteiros. Em um Arduino UNO (ATMega3
 	Bytes = 10 + 1 + sizeof(SuaVariavel)
 	Bytes = 11 + sizeof(SuaVariavel)
 
-Como pode-se notar, o armazenamento de qualquer dado requer 11 bytes a mais que o armazenamento direto na memória: Um char, por exemplo, consumiria 12 bytes de memória se alocado em uma lista encadeada tipada e 1 byte se alocado estaticamente ou dinamicamente. Deve-se então utilizar esse artifício com cautela. Consulte os exemplos antes de implementá-las em seu firmware. **As listas encadeadas desta solução suportam armazenamentos de tipos nao-primitivos do C desde que o tamanho deste tipo nao ultrapasse 64-bits**.
+Como pode-se notar, o armazenamento de qualquer dado requer 11 bytes a mais que o armazenamento direto na memória: Um char, por exemplo, consumiria 12 bytes de memória se alocado em uma lista encadeada tipada e 1 byte se alocado estaticamente ou dinamicamente. Deve-se então utilizar esse artifício com cautela. Consulte os exemplos antes de implementá-las em seu firmware.
 
 ### Buffer
 
