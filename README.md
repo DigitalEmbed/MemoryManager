@@ -30,7 +30,7 @@ In this manager, allocation, release and memory checking functions were implemen
 
 ### DataBank
 
-A Memory Pools manager for the C primitives (8-bit, 16-bit, 32-bit, and 64-bit variables) has been implemented in this library, **as long as their size does not exceed 64-bits**. The idea is to provide the user with automated dynamic allocation functions, always allocating pre-allocated Memory Pools in this library, similar to a database. This type of management is similar to a hierarchical tree, where each variable is directed to a specific Memory Pool according to its size.
+A Memory Pools manager for the C primitives (8-bit, 16-bit, 32-bit, and 64-bit variables) has been implemented in this library, **as long as these are defined in the config.h file**. The idea is to provide the user with automated dynamic allocation functions, always allocating pre-allocated Memory Pools in this library, similar to a database. This type of management is similar to a hierarchical tree, where each variable is directed to a specific Memory Pool according to its size.
 
 Control, allocation, and deallocation functions are present in this library. See the examples before implementing it in your firmware.
 
@@ -162,7 +162,7 @@ Nesse gerenciador, foram implementadas funções de alocação, liberação e ch
 
 ### DataBank
 
-Foi implementado nessa biblioteca um gerenciador de Memory Pools para os tipos primitivos do C (variáveis de 8-btis, 16-bits, 32-bits e 64-bits) e não primitivos, **desde que o tamanho destes não ultrapassem 64-bits**. A idéia é proporcionar ao usuário funções de alocação dinâmicas automatizadas, sempre alocando dos Memory Pools pré-alocados nessa bilbioteca, semelhante a um banco de dados. Esse tipo de gerenciamento é semelhante a uma arvore hierárquica, onde cada variável é direcionada para um Memory Pool específico de acordo com o seu tamanho. 
+Foi implementado nessa biblioteca um gerenciador de Memory Pools para os tipos primitivos do C (variáveis de 8-btis, 16-bits, 32-bits e 64-bits) e não primitivos, **desde que estes estejam definidos no arquivo config.h**. A idéia é proporcionar ao usuário funções de alocação dinâmicas automatizadas, sempre alocando dos Memory Pools pré-alocados nessa bilbioteca, semelhante a um banco de dados. Esse tipo de gerenciamento é semelhante a uma arvore hierárquica, onde cada variável é direcionada para um Memory Pool específico de acordo com o seu tamanho. 
 
 Funções de controle, alocação e desalocação estão presentes nessa biblioteca. Consulte os exemplos antes de implementá-la em seu firmware.
 
