@@ -71,10 +71,10 @@
       X(mpMemoryPoolName, ui8DataPoolSize, ui16MemoryPoolSize)
     */
     #define __DATA_BANK_POOL_LIST__\
-      X(mp8BitPool, sizeof(uint8_t), 100)\
-      X(mp16BitPool, sizeof(uint16_t), 50)\
-      X(mp32BitPool, sizeof(uint32_t), 25)\
-      X(mp64BitPool, sizeof(uint64_t), 25)
+      X(mp8BitPool, sizeof(uint8_t), 30)\
+      X(mp16BitPool, sizeof(uint16_t), 20)\
+      X(mp32BitPool, sizeof(uint32_t), 10)\
+      X(mp64BitPool, sizeof(uint64_t), 5)
 
   #endif
 

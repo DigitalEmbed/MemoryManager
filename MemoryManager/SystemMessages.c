@@ -98,3 +98,21 @@
 #if (defined(__UNTYPED_LIST_MANAGER_ENABLE__) && (!defined(__MEMORY_POOL_MANAGER_ENABLE__) || !defined(__BIT_VECTOR_MANAGER_ENABLE__)))
   #warning UntypedLists uses dynamic allocation functions! You shoud be extremely cautious with your RAM. In projects with MISRA rules, you should enable __MEMORY_POOL_MANAGER_ENABLE__.
 #endif
+
+//! System Message: TypedList Error
+/*!
+  Please don't modify this.
+*/
+#if (!((defined(__TYPED_LIST_MANAGER_ENABLE__) && (!defined(__BIT_VECTOR_MANAGER_ENABLE__) || !defined(__MEMORY_POOL_MANAGER_ENABLE__)))\
+||((defined(__TYPED_LIST_MANAGER_ENABLE__) && defined(__TYPED_LIST_UNTYPED_ELEMENT_POOL_SIZE__) && (__TYPED_LIST_UNTYPED_ELEMENT_POOL_SIZE__ > 0)))))
+  #error Invalid __SOFT_DECIMAL_AMOUNT_OF_FRACTIONARY_BITS__ value!
+#endif
+
+//! System Message: UntypedList Error
+/*!
+  Please don't modify this.
+*/
+#if (!((defined(__UNTYPED_LIST_MANAGER_ENABLE__) && (!defined(__BIT_VECTOR_MANAGER_ENABLE__) || !defined(__MEMORY_POOL_MANAGER_ENABLE__)))\
+||((defined(__UNTYPED_LIST_MANAGER_ENABLE__) && defined(__UNTYPED_LIST_TYPED_ELEMENT_POOL_SIZE__) && (__UNTYPED_LIST_TYPED_ELEMENT_POOL_SIZE__ > 0)))))
+  #error Invalid __UNTYPED_LIST_TYPED_ELEMENT_POOL_SIZE__ value!
+#endif

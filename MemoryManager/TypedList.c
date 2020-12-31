@@ -176,8 +176,5 @@
       #endif
     }
 
-  #else
-    #error Invalid __TYPED_LIST_UNTYPED_ELEMENT_POOL_SIZE__ value!
   #endif
-
 #endif
